@@ -1,0 +1,1023 @@
+﻿﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanarat C - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='68' font-size='60' font-family='Arial,sans-serif' font-weight='bold' fill='%2322d3ee' text-anchor='middle'>T</text></svg>">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Sora & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Sora:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Swiper.js for 3D Carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="antialiased gate-locked">
+    <!-- Verse Gate -->
+    <div id="verse-gate" class="verse-gate">
+        <div class="gate-door gate-left"></div>
+        <div class="gate-door gate-right"></div>
+        <div class="gate-glow"></div>
+        <div class="gate-veil"></div>
+        <div class="gate-scanlines"></div>
+        <div id="gate-rain" class="gate-rain" aria-hidden="true"></div>
+
+        <!-- AI Neural Network Background -->
+        <canvas id="gate-neural-canvas" class="gate-neural-canvas"></canvas>
+
+        <!-- Floating AI Particles -->
+        <div class="gate-particles" id="gate-particles"></div>
+
+        <!-- Orbiting Rings -->
+        <div class="gate-orbit-system">
+            <div class="gate-orbit gate-orbit-1"></div>
+            <div class="gate-orbit gate-orbit-2"></div>
+            <div class="gate-orbit gate-orbit-3"></div>
+            <div class="gate-orbit-core">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+        </div>
+
+        <div class="gate-content">
+            <div class="gate-title">
+                <span class="gate-title-main gate-name-glow">THANARAT C.</span>
+            </div>
+            <div class="gate-role-text">AI Engineer</div>
+            <button id="gate-enter-btn" class="gate-enter-circle" aria-label="Enter">
+                <span class="gate-enter-ring"></span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <div class="gate-tap-hint">Tap to enter</div>
+        </div>
+    </div>
+
+    <!-- Time-Warp Intro -->
+    <div id="time-warp" class="time-warp">
+        <div class="time-warp-core"></div>
+        <div class="time-warp-ring ring-1"></div>
+        <div class="time-warp-ring ring-2"></div>
+        <div class="time-warp-ring ring-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 nav-dock mt-6">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold font-sora">Thanarat C.</a>
+            <div class="flex items-center gap-4">
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a>
+                    <a href="#education" class="text-gray-300 hover:text-white transition-colors">Education</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
+                    <a href="#certificates" class="text-gray-300 hover:text-white transition-colors">Certificates</a>
+                </nav>
+                <div class="resume-wrap hidden md:block">
+                    <a href="#home"
+                        class="resume-hud-link border border-gray-500 text-gray-300 px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300">
+                        Resume
+                    </a>
+                    <div class="resume-tooltip">Unlock Resume</div>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Scroll Milestone -->
+    <div id="scroll-indicator" class="scroll-indicator">
+        <div id="scroll-indicator-bar" class="scroll-indicator-bar"></div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="hidden md:hidden fixed top-0 left-0 w-full h-full bg-gray-900/95 backdrop-blur-sm z-40">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 text-xl">
+            <a href="#experience" class="mobile-menu-link">Experience</a>
+            <a href="#education" class="mobile-menu-link">Education</a>
+            <a href="#skills" class="mobile-menu-link">Skills</a>
+            <a href="#projects" class="mobile-menu-link">Projects</a>
+            <a href="#certificates" class="mobile-menu-link">Certificates</a>
+            <a href="assets/Resume Thanarat.C (ENG).pdf" download
+                class="mt-4 border border-gray-300 text-gray-300 px-6 py-2 rounded-full">
+                Download Resume
+            </a>
+        </div>
+    </div>
+
+    <!-- Cyber Shapes (Diamonds) -->
+    <div class="cyber-shape shape-cyan"></div>
+    <div class="cyber-shape shape-purple"></div>
+    <div class="cyber-shape shape-pink"></div>
+
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="neural-lattice" aria-hidden="true"></div>
+
+    <!-- AI Signal HUD -->
+    <div id="ai-hud" class="ai-hud">
+        <div class="hud-title">PATHA AI</div>
+        <div class="hud-status">
+            <span class="hud-dot"></span>
+            <span id="hud-text">READY</span>
+        </div>
+        <div class="hud-bars">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 flex items-center">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-section">
+                    <h1 class="text-5xl md:text-8xl font-bold leading-tight text-white mb-6 text-glow tracking-tight hero-echo">
+                        Hello, I'm <span class="text-gradient-verse">Thanarat Chuephasuk.</span>
+                    </h1>
+                    <p class="mt-8 text-xl text-cyan-200 font-light tracking-wide font-mono h-[32px]">
+                        I am a <span id="typing-text" class="text-white font-bold"></span><span
+                            class="typing-cursor"></span>
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="mailto:thanarat.chue@gmail.com"
+                            class="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-blue-400/30">Contact
+                            Me</a>
+                        <button id="download-resume-btn"
+                            class="border border-gray-500 text-gray-300 px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300">Download
+                            Resume</button>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center fade-in-section" style="transition-delay: 200ms;">
+                    <div
+                        class="profile-glow w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl bg-gray-800 animate-float border-4 border-white/10">
+                        <img src="img/profile.jpg" alt="Thanarat Chuephasuk" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Companion Section -->
+        <section id="ai-companion" class="py-20 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-4">AI Companion</h2>
+            <p class="text-center text-gray-400 text-sm mb-16 tracking-widest uppercase font-mono">Ask Patha AI anything about me</p>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+                <div class="ai-avatar-panel">
+                    <img src="assets/pathawing_rm.png" alt="Patha AI" class="ai-avatar-img">
+                    <div class="ai-avatar-aura"></div>
+                    <div class="ai-avatar-speech-line"></div>
+                    <div class="ai-avatar-title">Patha AI</div>
+                </div>
+                <div class="ai-chat-panel">
+                    <div class="ai-chat-header">
+                        <span class="ai-chat-header-dot"></span>
+                        <span class="ai-chat-header-title">Patha AI</span>
+                        <span class="ai-chat-header-status">Online</span>
+                    </div>
+                    <div id="ai-chat-log" class="ai-chat-log">
+                        <div class="ai-bubble ai-bubble-bot">Hello, I'm Patha AI. Feel free to ask anything about my boss.</div>
+                    </div>
+                    <div class="ai-chat-input">
+                        <input id="ai-question-input" type="text" placeholder="ถามเกี่ยวกับธนรัช เช่น เป้าหมายในสายงานคืออะไร?">
+                        <button id="ai-question-send" type="button">Ask</button>
+                    </div>
+                    <div class="ai-suggestions">
+                        <button type="button" class="ai-suggestion"><i class="fa-solid fa-user text-xs"></i> ชื่ออะไร / ชื่อเล่น</button>
+                        <button type="button" class="ai-suggestion"><i class="fa-solid fa-bullseye text-xs"></i> เป้าหมายในสายงาน</button>
+                        <button type="button" class="ai-suggestion"><i class="fa-solid fa-heart text-xs"></i> งานอดิเรก</button>
+                        <button type="button" class="ai-suggestion"><i class="fa-solid fa-address-book text-xs"></i> ช่องทางติดต่อ</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Confirmation Modal -->
+        <div id="resume-modal" class="fixed inset-0 z-[60] flex items-center justify-center hidden">
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="resume-modal-overlay"></div>
+            <div
+                class="relative bg-[#0f172a] border border-cyan-500/30 p-8 rounded-2xl max-w-lg w-full mx-4 shadow-[0_0_50px_rgba(34,211,238,0.2)] transform transition-all scale-100">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+                        <i class="fa-solid fa-file-arrow-down text-3xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-4">Need a little encouragement</h3>
+                    
+                    <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+                        "I poured my heart into building this portfolio to show my true passion and potential for this field. If you download my resume... <br>
+                        <span class="text-cyan-300 font-semibold">please consider giving me a chance to join your team.</span> <br>
+                        I promise to dedicate myself and create real impact for the team!
+                    </p>
+
+                    <div class="flex gap-4 justify-center">
+                        <button id="resume-cancel-btn" class="px-6 py-3 rounded-full border border-gray-600 text-gray-400 hover:bg-gray-800 transition-colors text-base font-medium">
+                            Maybe Later
+                        </button>
+                        <a href="assets/Resume Thanarat.C (ENG).pdf" download id="resume-confirm-btn" class="px-8 py-3 rounded-full bg-cyan-500 text-black font-bold hover:bg-cyan-400 shadow-lg hover:shadow-cyan-500/30 transition-all text-base">
+                            Download Now!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-24 fade-in-section relative overflow-hidden">
+            <canvas id="constellation-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold text-center mb-4">Work Experience</h2>
+                <p class="text-center text-gray-400 text-sm mb-16 tracking-widest uppercase font-mono">Career Timeline</p>
+
+                <div class="exp-timeline max-w-5xl mx-auto relative">
+                    <!-- Timeline Line -->
+                    <div class="exp-timeline-line"></div>
+
+                    <!-- 1. AI Context Engineer (Current) -->
+                    <div class="exp-card-wrap exp-card-right fade-in-section">
+                        <div class="exp-node">
+                            <div class="exp-node-ring"></div>
+                            <div class="exp-node-dot exp-node-active"></div>
+                        </div>
+                        <div class="exp-card tilt-card exp-card-current">
+                            <div class="exp-card-header">
+                                <span class="exp-badge exp-badge-current">
+                                    <span class="exp-badge-pulse"></span>
+                                    Feb. 2026 - Present
+                                </span>
+                                <div class="exp-card-number">01</div>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mt-4">AI Context Engineer</h3>
+                            <p class="exp-company">
+                                <i class="fa-solid fa-building text-xs mr-2 text-cyan-400"></i>
+                                Sirivatana Interprint Public Company Limited
+                            </p>
+                            <div class="exp-divider"></div>
+                            <ul class="exp-details">
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-microchip"></i></span>
+                                    <span>Led the transformation of legacy ERP into a fully AI-native ERP platform with natural language querying and multi-LLM orchestration.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-robot"></i></span>
+                                    <span>Built an enterprise RAG-based chatbot integrated with ERP for intelligent organizational data retrieval.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-microphone-lines"></i></span>
+                                    <span>Developed AI voice and meeting systems with real-time listening, contextual analysis, and strategic response capabilities.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-arrows-spin"></i></span>
+                                    <span>Drove company-wide AI integration and automation initiatives across business functions.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-code"></i></span>
+                                    <span>Architect and develop assigned programs by deeply integrating AI and Automation across all business contexts to maximize operational efficiency.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-diagram-project"></i></span>
+                                    <span>Analyze and modernize legacy workflows by implementing emerging technologies and AI applications to drive organizational digital transformation.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-people-arrows"></i></span>
+                                    <span>Lead the adoption of AI-driven solutions for diverse assigned projects, ensuring intelligent automation in every functional area.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-chart-line"></i></span>
+                                    <span>Strategically manage the expenditure for AI models and digital tools, ensuring high-performance capabilities and a strong ROI for the organization.</span>
+                                </li>
+                            </ul>
+                            <div class="exp-tech-tags">
+                                <span>LLM/RAG</span>
+                                <span>LangChain</span>
+                                <span>FastAPI</span>
+                                <span>Vector DB</span>
+                                <span>AI Automation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. IT Infrastructure Section Head -->
+                    <div class="exp-card-wrap exp-card-left fade-in-section">
+                        <div class="exp-node">
+                            <div class="exp-node-ring"></div>
+                            <div class="exp-node-dot"></div>
+                        </div>
+                        <div class="exp-card tilt-card">
+                            <div class="exp-card-header">
+                                <span class="exp-badge exp-badge-green">Feb. 2021 - Feb. 2026</span>
+                                <div class="exp-card-number">02</div>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mt-4">IT Infrastructure Section Head</h3>
+                            <p class="exp-company">
+                                <i class="fa-solid fa-building text-xs mr-2 text-cyan-400"></i>
+                                C.J. Express Group Co., Ltd.
+                            </p>
+                            <div class="exp-divider"></div>
+                            <ul class="exp-details">
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-users-gear"></i></span>
+                                    <span>Led and coordinated the infrastructure team for new branch setups, ensuring 100% operational readiness on schedule.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-gears"></i></span>
+                                    <span>Executed automated deployment pipelines via AWX (Ansible) to provision Linux servers, managing inventory and network configurations.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-cash-register"></i></span>
+                                    <span>Managed POS device provisioning via AWX by registering Android IDs to Linux servers, ensuring seamless client-server integration.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-bug-slash"></i></span>
+                                    <span>Diagnosed and resolved deployment failures by analyzing Ansible error logs and correcting server configurations, reducing escalation to the DevOps team.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                                    <span>Designed a Python-based automation tool to generate Fortinet firewall scripts, reducing setup time from 20 minutes to under 10 seconds per branch.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-network-wired"></i></span>
+                                    <span>Managed Enterprise Network Infrastructure (Fortinet Firewalls, Cisco Switches, Wireless APs) across multiple branches.</span>
+                                </li>
+                            </ul>
+                            <div class="exp-tech-tags">
+                                <span>Ansible/AWX</span>
+                                <span>Python</span>
+                                <span>Linux</span>
+                                <span>Fortinet</span>
+                                <span>Cisco</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. IT Officer -->
+                    <div class="exp-card-wrap exp-card-right fade-in-section">
+                        <div class="exp-node">
+                            <div class="exp-node-ring"></div>
+                            <div class="exp-node-dot"></div>
+                        </div>
+                        <div class="exp-card tilt-card">
+                            <div class="exp-card-header">
+                                <span class="exp-badge exp-badge-blue">Sep. 2020 - Jan. 2021</span>
+                                <div class="exp-card-number">03</div>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mt-4">IT Officer</h3>
+                            <p class="exp-company">
+                                <i class="fa-solid fa-building text-xs mr-2 text-cyan-400"></i>
+                                Lazada Co., Ltd.
+                            </p>
+                            <div class="exp-divider"></div>
+                            <ul class="exp-details">
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-headset"></i></span>
+                                    <span>Provided remote support, hardware/software maintenance, system improvement, and data backup for warehouse operations.</span>
+                                </li>
+                            </ul>
+                            <div class="exp-tech-tags">
+                                <span>IT Support</span>
+                                <span>System Admin</span>
+                                <span>Warehouse Ops</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Game Developer & Admin -->
+                    <div class="exp-card-wrap exp-card-left fade-in-section">
+                        <div class="exp-node">
+                            <div class="exp-node-ring"></div>
+                            <div class="exp-node-dot"></div>
+                        </div>
+                        <div class="exp-card tilt-card">
+                            <div class="exp-card-header">
+                                <span class="exp-badge exp-badge-purple">May. 2016 - March 2018</span>
+                                <div class="exp-card-number">04</div>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-bold text-white mt-4">Game Developer & Admin</h3>
+                            <p class="exp-company">
+                                <i class="fa-solid fa-gamepad text-xs mr-2 text-cyan-400"></i>
+                                Personal Business Game Online
+                            </p>
+                            <div class="exp-divider"></div>
+                            <ul class="exp-details">
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-bug"></i></span>
+                                    <span>Supported game developers by identifying, analyzing, and fixing bugs to improve gameplay experience.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-server"></i></span>
+                                    <span>Helped develop game systems, improved server performance, and maintained data backups.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-bullhorn"></i></span>
+                                    <span>Managed Facebook page, created ad campaigns, and planned marketing strategies.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-users"></i></span>
+                                    <span>Developed engaging content to grow the player community and increase user retention.</span>
+                                </li>
+                            </ul>
+                            <div class="exp-tech-tags">
+                                <span>Game Dev</span>
+                                <span>Server Admin</span>
+                                <span>Marketing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 bg-black/20 fade-in-section relative overflow-hidden">
+            <div class="container mx-auto px-6">
+                <canvas id="skills-constellation" class="skills-constellation-canvas"></canvas>
+                <h2 class="text-3xl font-bold text-center mb-4">Skills & Technologies</h2>
+                <p class="text-center text-gray-400 text-sm mb-16 tracking-widest uppercase font-mono">Tech Stack</p>
+
+                <!-- Featured: Applied AI (Hero Card) -->
+                <div class="skills-hero-card tilt-card mb-10 fade-in-section">
+                    <div class="skills-hero-glow"></div>
+                    <div class="skills-hero-inner">
+                        <div class="skills-hero-header">
+                            <div class="skills-hero-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl md:text-3xl font-bold text-white">Applied AI & GenAI</h3>
+                                <p class="text-cyan-300/70 text-sm font-mono mt-1">Core Expertise</p>
+                            </div>
+                        </div>
+                        <div class="skills-hero-grid">
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-comments"></i>
+                                <span>LLMs</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                                <span>RAG</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-link"></i>
+                                <span>LangChain</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-pen-fancy"></i>
+                                <span>Prompt Engineering</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-vector-square"></i>
+                                <span>Vector Search</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-cube"></i>
+                                <span>Embeddings</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-plug"></i>
+                                <span>MCP</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-robot"></i>
+                                <span>AI Agents</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>AI Tools</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-eye"></i>
+                                <span>OpenCV</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-paw"></i>
+                                <span>OpenClaw</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-cloud"></i>
+                                <span>Models APIs</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-microchip"></i>
+                                <span>Local Models</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-sitemap"></i>
+                                <span>Context Engineer</span>
+                            </div>
+                            <div class="skill-chip skill-chip-highlight">
+                                <i class="fa-solid fa-sliders"></i>
+                                <span>Fine-tune Model</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Languages -->
+                    <div class="skill-card tilt-card fade-in-section">
+                        <div class="skill-card-accent skill-accent-cyan"></div>
+                        <div class="skill-card-icon bg-cyan-500/10 text-cyan-400">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h4 class="skill-card-title">Languages</h4>
+                        <div class="skill-card-pills">
+                            <span class="skill-pill">Python</span>
+                            <span class="skill-pill">JavaScript</span>
+                            <span class="skill-pill">Java</span>
+                            <span class="skill-pill">C#</span>
+                            <span class="skill-pill">HTML</span>
+                            <span class="skill-pill">CSS</span>
+                        </div>
+                    </div>
+
+                    <!-- Frameworks -->
+                    <div class="skill-card tilt-card fade-in-section">
+                        <div class="skill-card-accent skill-accent-purple"></div>
+                        <div class="skill-card-icon bg-purple-500/10 text-purple-400">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h4 class="skill-card-title">Frameworks</h4>
+                        <div class="skill-card-pills">
+                            <span class="skill-pill">FastAPI</span>
+                            <span class="skill-pill">React</span>
+                            <span class="skill-pill">Next.js</span>
+                            <span class="skill-pill">Node.js</span>
+                            <span class="skill-pill">Robot Framework</span>
+                            <span class="skill-pill">Apache Airflow</span>
+                            <span class="skill-pill">Prefect</span>
+                        </div>
+                    </div>
+
+                    <!-- Database -->
+                    <div class="skill-card tilt-card fade-in-section">
+                        <div class="skill-card-accent skill-accent-yellow"></div>
+                        <div class="skill-card-icon bg-yellow-500/10 text-yellow-400">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h4 class="skill-card-title">Database</h4>
+                        <div class="skill-card-pills">
+                            <span class="skill-pill">SQL Server</span>
+                            <span class="skill-pill">PostgreSQL</span>
+                            <span class="skill-pill">MongoDB</span>
+                            <span class="skill-pill">Firebase</span>
+                            <span class="skill-pill">Dataverse</span>
+                            <span class="skill-pill">ChromaDB</span>
+                            <span class="skill-pill">Qdrant</span>
+                            <span class="skill-pill">Pinecone</span>
+                        </div>
+                    </div>
+
+                    <!-- Infrastructure -->
+                    <div class="skill-card tilt-card fade-in-section">
+                        <div class="skill-card-accent skill-accent-green"></div>
+                        <div class="skill-card-icon bg-green-500/10 text-green-400">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h4 class="skill-card-title">Infrastructure</h4>
+                        <div class="skill-card-pills">
+                            <span class="skill-pill">GCP (Vertex AI)</span>
+                            <span class="skill-pill">Linux Server</span>
+                            <span class="skill-pill">Windows Server</span>
+                            <span class="skill-pill">Networking</span>
+                            <span class="skill-pill">VMware</span>
+                            <span class="skill-pill">Ubuntu</span>
+                        </div>
+                    </div>
+
+                    <!-- Tools -->
+                    <div class="skill-card tilt-card fade-in-section">
+                        <div class="skill-card-accent skill-accent-blue"></div>
+                        <div class="skill-card-icon bg-blue-500/10 text-blue-400">
+                            <i class="fa-solid fa-toolbox"></i>
+                        </div>
+                        <h4 class="skill-card-title">Tools</h4>
+                        <div class="skill-card-pills">
+                            <span class="skill-pill">Git</span>
+                            <span class="skill-pill">Docker</span>
+                            <span class="skill-pill">Ansible (AWX)</span>
+                            <span class="skill-pill">Grafana</span>
+                            <span class="skill-pill">Figma</span>
+                            <span class="skill-pill">Canva</span>
+                        </div>
+                    </div>
+
+                    <!-- Automation -->
+                    <div class="skill-card tilt-card fade-in-section">
+                        <div class="skill-card-accent skill-accent-pink"></div>
+                        <div class="skill-card-icon bg-pink-500/10 text-pink-400">
+                            <i class="fa-solid fa-gears"></i>
+                        </div>
+                        <h4 class="skill-card-title">Automation</h4>
+                        <div class="skill-card-pills">
+                            <span class="skill-pill">Python Automation</span>
+                            <span class="skill-pill">n8n</span>
+                            <span class="skill-pill">Make</span>
+                            <span class="skill-pill">Power Automate</span>
+                            <span class="skill-pill">UiPath</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Enterprise Platforms (Full Width) -->
+                <div class="skill-card tilt-card mt-6 fade-in-section">
+                    <div class="skill-card-accent skill-accent-orange"></div>
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="skill-card-icon bg-orange-500/10 text-orange-400">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <h4 class="skill-card-title" style="margin-bottom:0">Enterprise Platforms</h4>
+                    </div>
+                    <div class="skill-card-pills">
+                        <span class="skill-pill">Microsoft Power Platform (Power BI, Power Apps, Power Automate)</span>
+                        <span class="skill-pill">Google Workspace (GAS, AppSheet, Looker)</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
+            <!-- Featured Project Showcase -->
+            <div id="projects-container" class="max-w-6xl mx-auto">
+                <div class="project-hero-wrap relative">
+                    <!-- Verse AI Figure (sit on Project edge) -->
+                    <div class="verse-ai-figure project-verse-figure">
+                        <div class="ai-figure-glow"></div>
+                        <img src="assets/pathax-rm.png" alt="AI Verse Figure" class="ai-figure-img">
+                        <div class="ai-figure-base"></div>
+                        <div class="ai-figure-scanline"></div>
+                    </div>
+
+                    <div class="glass-panel tilt-card rounded-3xl overflow-hidden relative group project-spotlight">
+                    <div class="grid md:grid-cols-2 gap-0">
+                        <!-- Image Section -->
+                        <div class="relative h-64 md:h-auto overflow-hidden">
+                            <img src="img/project_ai_x.png" alt="AI-ProjectX"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-90 md:bg-gradient-to-r">
+                            </div>
+
+                            <!-- Floating Badge -->
+                            <div class="absolute top-4 left-4">
+                                <span
+                                    class="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 backdrop-blur-md px-4 py-1 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(34,211,238,0.3)]">
+                                    <i class="fa-solid fa-star mr-2"></i>Flagship Project
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Content Section -->
+                        <div
+                            class="p-8 md:p-12 flex flex-col justify-center relative z-10 glass-panel border-0 bg-opacity-30">
+                            <h3 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                                AI-Project<span class="text-cyan-400">X</span>
+                            </h3>
+                            <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                                A centralized repository showcasing a diverse collection of AI-powered applications.
+                                Features specialized modules for <span class="text-cyan-200">Smart Traffic
+                                    Analytics</span>,
+                                <span class="text-purple-200">AI Recruitment</span>, and
+                                <span class="text-pink-200">Financial Insight</span>.
+                                Demonstrating the versatility of Computer Vision (OpenCV) and modern Machine Learning
+                                algorithms across different domains.
+                            </p>
+
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">Python</span>
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">OpenCV</span>
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">TensorFlow</span>
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">YOLOv8</span>
+                            </div>
+
+                            <a href="https://github.com/Thanarat-Int/AI-ProjectX/tree/main" target="_blank"
+                                class="inline-flex justify-center items-center gap-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-cyan-500 hover:to-blue-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all duration-300 transform hover:-translate-y-1">
+                                <span>Explore Core Code</span>
+                                <i class="fa-brands fa-github text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel tilt-card rounded-3xl overflow-hidden relative group mt-10 project-spotlight">
+                <div class="grid md:grid-cols-2 gap-0">
+                    <!-- Visual Panel -->
+                    <div class="relative h-64 md:h-auto overflow-hidden flex items-center justify-center verse-portal">
+                        <div class="verse-portal-bg"></div>
+                        <div class="verse-portal-orb orb-a"></div>
+                        <div class="verse-portal-orb orb-b"></div>
+                        <div class="verse-portal-grid"></div>
+                        <div class="verse-portal-ring"></div>
+                        <div class="verse-portal-ring ring-inner"></div>
+                        <div class="verse-portal-spark"></div>
+                        <div class="verse-portal-spark spark-2"></div>
+                        <div class="verse-portal-spark spark-3"></div>
+                        <div class="verse-portal-spark spark-4"></div>
+
+                        <div class="relative z-10 text-center px-6">
+                            <div class="verse-portal-icon">
+                                <i class="fa-solid fa-language text-3xl text-cyan-200"></i>
+                            </div>
+                            <p class="text-cyan-200 font-mono text-sm uppercase tracking-widest">Live Website</p>
+                            <h4 class="text-2xl md:text-3xl font-bold text-white mt-2">AI-DictX</h4>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-8 md:p-12 flex flex-col justify-center relative z-10 glass-panel border-0 bg-opacity-30">
+                        <h3 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                            AI-<span class="text-cyan-400">DictX</span>
+                        </h3>
+                        <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                            A smart bilingual dictionary web app designed for fast, accurate word lookup and clean
+                            reading experience. Built to feel lightweight, modern, and instantly useful for daily
+                            learning and communication.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span
+                                class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">Web
+                                App</span>
+                            <span
+                                class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">Dictionary</span>
+                            <span
+                                class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">AI
+                                Assisted</span>
+                        </div>
+                        <a href="https://ai-dictx.lovable.app/" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex justify-center items-center gap-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-cyan-500 hover:to-blue-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all duration-300 transform hover:-translate-y-1">
+                            <span>Visit AI-DictX</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="project-dna">
+                <div class="dna-track">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="dna-label">PROJECT DNA</div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">Education</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-panel tilt-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold text-white relative z-10">Bachelor's Degree in Information Technology
+                    </h3>
+                    <p class="italic text-cyan-200 mt-1 relative z-10">Sripatum University, School of Information
+                        Technology</p>
+                    <p class="mt-4 text-sm text-gray-300 relative z-10"><strong class="text-white">Relevant
+                            Coursework:</strong>
+                        Computer Networking, Microsoft Power Platform, Database Systems, Data Analytics, System
+                        Architecture, Programming, Cybersecurity, IT Automation.</p>
+                </div>
+                <div class="glass-panel tilt-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold text-white relative z-10">Diploma in Business Computer</h3>
+                    <p class="italic text-cyan-200 mt-1 relative z-10">Eastern College of Technology</p>
+                    <p class="mt-4 text-sm text-gray-300 relative z-10"><strong class="text-white">Relevant
+                            Coursework:</strong>
+                        Database Management, Programming, Business Administration, Financial Management, System
+                        Planning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="py-24 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">Certificates</h2>
+
+                <!-- 3D Swiper Carousel -->
+                <div class="certificates-swiper swiper-container pb-12">
+                    <div class="swiper-wrapper">
+
+                        <!-- AWS Certificate 1 -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/my-aws-cert1.jpg')">
+                            <img src="assets/certificates/my-aws-cert1.jpg" alt="AWS Certificate 1">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">AWS Cloud Practitioner</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Amazon Web Services</p>
+                            </div>
+                        </div>
+
+                        <!-- AWS Certificate 2 -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/my-aws-cert2.jpg')">
+                            <img src="assets/certificates/my-aws-cert2.jpg" alt="AWS Certificate 2">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">DevOps on AWS</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Amazon Web Services</p>
+                            </div>
+                        </div>
+
+                        <!-- FreeCodeCamp ML -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Machine Learning with Python freeCodeCamp.png')">
+                            <img src="assets/certificates/Machine Learning with Python freeCodeCamp.png"
+                                alt="Machine Learning with Python">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Machine Learning (Python)</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">freeCodeCamp</p>
+                            </div>
+                        </div>
+
+                        <!-- FreeCodeCamp Data Analysis -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Data Analysis with Python freeCodeCamp.png')">
+                            <img src="assets/certificates/Data Analysis with Python freeCodeCamp.png"
+                                alt="Data Analysis with Python">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Data Analysis (Python)</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">freeCodeCamp</p>
+                            </div>
+                        </div>
+
+                        <!-- Scrimba AI -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Scrimba_AI_Engineering Specialization.jpeg')">
+                            <img src="assets/certificates/Scrimba_AI_Engineering Specialization.jpeg"
+                                alt="AI Engineering Specialization">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">AI Engineering</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Scrimba | Coursera</p>
+                            </div>
+                        </div>
+
+                        <!-- Udemy Python -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/Python Pro Bootcamp.jpg')">
+                            <img src="assets/certificates/Python Pro Bootcamp.jpg" alt="Python Pro Bootcamp">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Python Pro Bootcamp</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Udemy</p>
+                            </div>
+                        </div>
+
+                        <!-- Google Data Analytics -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/Google Data Analytics.png')">
+                            <img src="assets/certificates/Google Data Analytics.png" alt="Google Data Analytics">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Google Data Analytics</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Google</p>
+                            </div>
+                        </div>
+
+                        <!-- Google IT Automation -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Google IT Automation with Python.png')">
+                            <img src="assets/certificates/Google IT Automation with Python.png"
+                                alt="Google IT Automation">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">IT Automation (Python)</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Google</p>
+                            </div>
+                        </div>
+
+                        <!-- IBM Generative AI -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/IBM Generative AI Engineering.jpeg')">
+                            <img src="assets/certificates/IBM Generative AI Engineering.jpeg"
+                                alt="IBM Generative AI Engineering">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Generative AI Engineering</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">IBM</p>
+                            </div>
+                        </div>
+
+                        <!-- Meta Data Analyst -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/Meta Data Analyst.jpg')">
+                            <img src="assets/certificates/Meta Data Analyst.jpg" alt="Meta Data Analyst">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Meta Data Analyst</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Meta</p>
+                            </div>
+                        </div>
+
+                        <!-- Microsoft AI -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Microsoft AI & ML Engineering.jpg')">
+                            <img src="assets/certificates/Microsoft AI & ML Engineering.jpg"
+                                alt="Microsoft AI & ML Engineering">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">AI & ML Engineering</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Microsoft</p>
+                            </div>
+                        </div>
+
+                        <!-- Gemini Educator -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Gemini Certified Educator.jpg')">
+                            <img src="assets/certificates/Gemini Certified Educator.jpg"
+                                alt="Gemini Certified Educator">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Gemini Certified Educator</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Google for Education</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination certificates-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Modal -->
+        <div id="modal"
+            class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm z-[999] flex justify-center items-center p-4 transition-opacity duration-300">
+            <div class="relative bg-gray-900 border border-gray-700 p-2 sm:p-4 rounded-lg">
+                <button id="modal-close-btn"
+                    class="absolute -top-4 -right-4 text-white bg-black rounded-full w-10 h-10 text-2xl z-10 hover:bg-white hover:text-black transition-colors">&times;</button>
+                <img id="modal-img" src="" alt="Certificate"
+                    class="block object-contain rounded-md max-w-[90vw] max-h-[90vh]">
+            </div>
+        </div>
+
+        <!-- Mission Quote Section -->
+        <section class="py-20 fade-in-section">
+            <div class="max-w-3xl mx-auto text-center px-6">
+                <div class="mission-quote-card">
+                    <div class="mission-quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <p class="mission-quote-text">
+                        I believe AI is not here to replace us — it's here to <span class="text-cyan-300 font-bold">amplify</span> what we can do.
+                        My mission is to bridge the gap between cutting-edge AI and real business impact.
+                    </p>
+                    <div class="mission-quote-author">
+                        <span class="mission-quote-dash"></span>
+                        <span>Thanarat Chuephasuk</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer (No Changes) -->
+        <footer class="text-center py-10 text-gray-400 border-t border-gray-800">
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-x-8 gap-y-4 mb-4">
+                <a href="mailto:thanarat.chue@gmail.com"
+                    class="flex items-center gap-3 hover:text-white transition-colors" aria-label="Email"><i
+                        class="fa-solid fa-envelope text-xl"></i><span>thanarat.chue@gmail.com</span></a>
+                <a href="https://github.com/Thanarat-Int" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-3 hover:text-white transition-colors" aria-label="GitHub"><i
+                        class="fa-brands fa-github text-xl"></i><span>https://github.com/Thanarat-Int</span></a>
+                <span class="flex items-center gap-3"><i class="fa-solid fa-phone text-xl"
+                        aria-hidden="true"></i><span>+66 95-934-4939</span></span>
+            </div>
+            <p class="text-sm">&copy; 2025 thanarat Int. All Rights Reserved.</p>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+            <i class="fa-solid fa-chevron-up"></i>
+        </button>
+
+        <!-- Swiper.js -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <!-- Custom JS -->
+        <script src="js/main.js"></script>
+</body>
+
+</html>

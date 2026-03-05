@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanarat C - Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Sora & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Sora:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Swiper.js for 3D Carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 nav-dock mt-6">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold font-sora">Thanarat C.</a>
+            <div class="flex items-center gap-4">
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a>
+                    <a href="#education" class="text-gray-300 hover:text-white transition-colors">Education</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
+                    <a href="#certificates" class="text-gray-300 hover:text-white transition-colors">Certificates</a>
+                </nav>
+                <a href="#home"
+                    class="hidden md:block border border-gray-500 text-gray-300 px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300">
+                    Resume
+                </a>
+                <button id="mobile-menu-button" class="md:hidden text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="hidden md:hidden fixed top-0 left-0 w-full h-full bg-gray-900/95 backdrop-blur-sm z-40">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 text-xl">
+            <a href="#experience" class="mobile-menu-link">Experience</a>
+            <a href="#education" class="mobile-menu-link">Education</a>
+            <a href="#skills" class="mobile-menu-link">Skills</a>
+            <a href="#projects" class="mobile-menu-link">Projects</a>
+            <a href="#certificates" class="mobile-menu-link">Certificates</a>
+            <a href="assets/Resume Thanarat.C (ENG).pdf" download
+                class="mt-4 border border-gray-300 text-gray-300 px-6 py-2 rounded-full">
+                Download Resume
+            </a>
+        </div>
+    </div>
+
+    <!-- Cyber Shapes (Diamonds) -->
+    <div class="cyber-shape shape-cyan"></div>
+    <div class="cyber-shape shape-purple"></div>
+    <div class="cyber-shape shape-pink"></div>
+
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+
+    <main class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 flex items-center">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-section">
+                    <h1 class="text-5xl md:text-8xl font-bold leading-tight text-white mb-6 text-glow tracking-tight">
+                        Hello, I'm <span class="text-gradient-verse">Thanarat Chuephasuk.</span>
+                    </h1>
+                    <p class="mt-8 text-xl text-cyan-200 font-light tracking-wide font-mono h-[32px]">
+                        I am a <span id="typing-text" class="text-white font-bold"></span><span
+                            class="typing-cursor"></span>
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="mailto:thanarataix@gmail.com"
+                            class="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-all duration-300 shadow-lg hover:shadow-blue-400/30">Contact
+                            Me</a>
+                        <button id="download-resume-btn"
+                            class="border border-gray-500 text-gray-300 px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition-all duration-300">Download
+                            Resume</button>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center fade-in-section" style="transition-delay: 200ms;">
+                    <div
+                        class="profile-glow w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl bg-gray-800 animate-float border-4 border-white/10">
+                        <img src="img/profile.jpg" alt="Thanarat Chuephasuk" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Confirmation Modal -->
+        <div id="resume-modal" class="fixed inset-0 z-[60] flex items-center justify-center hidden">
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="resume-modal-overlay"></div>
+            <div
+                class="relative bg-[#0f172a] border border-cyan-500/30 p-8 rounded-2xl max-w-lg w-full mx-4 shadow-[0_0_50px_rgba(34,211,238,0.2)] transform transition-all scale-100">
+                <div class="text-center">
+                    <div
+                        class="w-16 h-16 bg-cyan-500/10 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+                        <i class="fa-solid fa-file-arrow-down text-3xl text-cyan-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-4">Need a little encouragement 🥺</h3>
+                    <p class="text-gray-300 mb-4 leading-relaxed text-lg">
+                        ผมตั้งใจทำเว็บไซต์นี้ขึ้นมาเพื่อให้เห็นถึงศักยภาพและความหลงใหลในสายงานนี้จริงๆ หากคุณพี่ HR โหลด
+                        Resume ของผมไปแล้ว... <br>
+                        <span class="text-cyan-300 font-semibold">ช่วยเปิดใจพิจารณาเด็กคนนี้เข้าสู่ทีมด้วยนะครับ</span>
+                        <br>
+                        สัญญาว่าจะทุ่มเทและสร้าง Impact ให้กับทีมแน่นอนครับ! ❤️🔥
+                    </p>
+
+                    <div class="border-t border-gray-700/50 my-4"></div>
+
+                    <p class="text-gray-400 mb-8 leading-relaxed text-sm italic">
+                        "I poured my heart into building this portfolio to show my true passion and potential. If you
+                        download my resume... <br>
+                        <span class="text-cyan-200">please consider giving me a chance to join your team.</span> <br>
+                        I promise to bring my best and make a real impact!" 🚀
+                    </p>
+
+                    <div class="flex gap-4 justify-center">
+                        <button id="resume-cancel-btn"
+                            class="px-6 py-3 rounded-full border border-gray-600 text-gray-400 hover:bg-gray-800 transition-colors text-base font-medium">
+                            Maybe Later / ไว้ก่อน
+                        </button>
+                        <a href="assets/Resume Thanarat.C (ENG).pdf" download id="resume-confirm-btn"
+                            class="px-8 py-3 rounded-full bg-cyan-500 text-black font-bold hover:bg-cyan-400 shadow-lg hover:shadow-cyan-500/30 transition-all text-base">
+                            Download Now / โหลดเลย!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Work Experience Section -->
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-24 fade-in-section relative overflow-hidden">
+            <!-- ADD THIS CANVAS FOR THE ANIMATION -->
+            <canvas id="constellation-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+
+            <!-- THIS WRAPPER KEEPS YOUR CONTENT ON TOP -->
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold text-center mb-16">Work Experience</h2>
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- Holographic Beam -->
+                    <div class="holo-beam"></div>
+
+                    <!-- C.J. Express -->
+                    <div class="relative mb-16">
+                        <div class="neon-emitter"></div>
+                        <div class="ml-10 md:w-1/2 md:ml-[50%] md:pl-16">
+                            <div class="glass-panel experience-card-verse p-8 rounded-2xl tilt-card">
+                                <span
+                                    class="bg-gradient-to-r from-green-500/20 to-green-500/10 text-green-300 px-4 py-1 rounded-full text-xs font-bold border border-green-500/30">Feb.
+                                    2021 - Present</span>
+                                <h3 class="text-2xl font-bold text-white mt-4">IT Infrastructure Lead</h3>
+                                <p class="italic text-gray-300 mb-6">C.J. Express Group Co,. Ltd.</p>
+                                <ul class="list-disc list-inside text-gray-400 text-sm space-y-3">
+                                    <li>Led and coordinated the infrastructure team for new branch setups, ensuring 100%
+                                        operational readiness on schedule.</li>
+                                    <li>Executed automated deployment pipelines via AWX (Ansible) to provision Linux
+                                        servers, managing inventory and network configurations.</li>
+                                    <li>Managed POS device provisioning via AWX by registering Android IDs to Linux
+                                        servers, ensuring seamless client-server integration for the store's sales
+                                        system.</li>
+                                    <li>Diagnosed and resolved deployment failures by analyzing Ansible error logs and
+                                        correcting server configurations, effectively reducing escalation to the DevOps
+                                        team.</li>
+                                    <li>Designed and developed a Python-based automation tool to generate Fortinet
+                                        firewall configuration scripts, reducing manual setup time from 20 minutes to
+                                        under 10 seconds per branch while ensuring 100% accuracy.</li>
+                                    <li>Managed configuration and maintenance of Enterprise Network Infrastructure
+                                        (Fortinet Firewalls, Cisco Switches, Wireless Access Points) across multiple
+                                        branches.</li>
+                                    <li>Monitored network performance and provided troubleshooting support to resolve
+                                        connectivity issues promptly.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lazada -->
+                    <div class="relative mb-16">
+                        <div class="neon-emitter"></div>
+                        <div class="ml-10 md:w-1/2 md:pr-16 md:text-right">
+                            <div class="glass-panel experience-card-verse p-8 rounded-2xl tilt-card"
+                                style="border-left: none; border-right: 3px solid transparent;">
+                                <span
+                                    class="bg-gradient-to-r from-blue-500/20 to-blue-500/10 text-blue-300 px-4 py-1 rounded-full text-xs font-bold border border-blue-500/30">Sep.
+                                    2020 - Jan 2021</span>
+                                <h3 class="text-2xl font-bold text-white mt-4">IT Officer</h3>
+                                <p class="italic text-gray-300 mb-4">Lazada Co,. Ltd.</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">Provided remote support,
+                                    hardware/software maintenance, system improvement, and data backup for warehouse
+                                    operations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Business -->
+                    <div class="relative mb-16">
+                        <div class="neon-emitter"></div>
+                        <div class="ml-10 md:w-1/2 md:ml-[50%] md:pl-16">
+                            <div class="glass-panel experience-card-verse p-8 rounded-2xl tilt-card">
+                                <span
+                                    class="bg-gradient-to-r from-purple-500/20 to-purple-500/10 text-purple-300 px-4 py-1 rounded-full text-xs font-bold border border-purple-500/30">May.
+                                    2016 - March 2018</span>
+                                <h3 class="text-2xl font-bold text-white mt-4">Game Developer & Admin</h3>
+                                <p class="italic text-gray-300 mb-6">Personal Business Game Online</p>
+                                <ul class="list-disc list-inside text-gray-400 text-sm space-y-3">
+                                    <li>Supported game developers by identifying, analyzing, and fixing bugs to improve
+                                        gameplay experience.</li>
+                                    <li>Helped develop game systems, improved server performance, and maintained data
+                                        backups.</li>
+                                    <li>Managed Facebook page, created ad campaigns, and planned marketing strategies.
+                                    </li>
+                                    <li>Developed engaging content to grow the player community and increase user
+                                        retention.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">Education</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="glass-panel tilt-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold text-white relative z-10">Bachelor’s Degree in Information Technology
+                    </h3>
+                    <p class="italic text-cyan-200 mt-1 relative z-10">Sripatum University, School of Information
+                        Technology</p>
+                    <p class="mt-4 text-sm text-gray-300 relative z-10"><strong class="text-white">Relevant
+                            Coursework:</strong>
+                        Computer Networking, Microsoft Power Platform, Database Systems, Data Analytics, System
+                        Architecture, Programming, Cybersecurity, IT Automation.</p>
+                </div>
+                <div class="glass-panel tilt-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold text-white relative z-10">Diploma in Business Computer</h3>
+                    <p class="italic text-cyan-200 mt-1 relative z-10">Eastern College of Technology</p>
+                    <p class="mt-4 text-sm text-gray-300 relative z-10"><strong class="text-white">Relevant
+                            Coursework:</strong>
+                        Database Management, Programming, Business Administration, Financial Management, System
+                        Planning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 bg-black/20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center mb-16">Skills & Technologies</h2>
+                <div class="space-y-16">
+
+                    <!-- Resume-Aligned Skills Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                        <!-- 1. Infrastructure -->
+                        <div class="glass-panel p-8 rounded-2xl tilt-card hover:border-cyan-500/50 transition-colors">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="p-3 bg-cyan-500/20 rounded-lg">
+                                    <i class="fa-solid fa-layer-group text-2xl text-cyan-400"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Infrastructure</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-pill">Linux Server</span>
+                                <span class="skill-pill">Windows Server</span>
+                                <span class="skill-pill">Docker</span>
+                                <span class="skill-pill">Ansible (AWX)</span>
+                                <span class="skill-pill">AWS</span>
+                                <span class="skill-pill">GCP</span>
+                                <span class="skill-pill">Network Device Management</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. Automation & Scripting -->
+                        <div class="glass-panel p-8 rounded-2xl tilt-card hover:border-purple-500/50 transition-colors">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="p-3 bg-purple-500/20 rounded-lg">
+                                    <i class="fa-solid fa-code text-2xl text-purple-400"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Automation & Scripting</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-pill">Python</span>
+                                <span class="skill-pill">Robot Framework</span>
+                                <span class="skill-pill">n8n</span>
+                                <span class="skill-pill">Make</span>
+                                <span class="skill-pill">Regular Expression (Regex)</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Applied AI & GenAI Solution -->
+                        <div class="glass-panel p-8 rounded-2xl tilt-card hover:border-pink-500/50 transition-colors">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="p-3 bg-pink-500/20 rounded-lg">
+                                    <i class="fa-solid fa-brain text-2xl text-pink-400"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Applied AI & GenAI Solution</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-pill">LLM Integration (OpenAI/Gemini)</span>
+                                <span class="skill-pill">RAG Concepts</span>
+                                <span class="skill-pill">Prompt Engineering</span>
+                                <span class="skill-pill">AI-Assisted Coding</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. Data & Enterprise Platforms -->
+                        <div class="glass-panel p-8 rounded-2xl tilt-card hover:border-yellow-500/50 transition-colors">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="p-3 bg-yellow-500/20 rounded-lg">
+                                    <i class="fa-solid fa-database text-2xl text-yellow-400"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Data & Enterprise Platforms</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="skill-pill">SQL</span>
+                                <span class="skill-pill">NoSQL</span>
+                                <span class="skill-pill">Microsoft Power Platform (BI, Apps, Automate)</span>
+                                <span class="skill-pill">Google Workspace Dev (AppSheet, Looker, Apps Script)</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
+            <!-- Featured Project Showcase -->
+            <div id="projects-container" class="max-w-6xl mx-auto">
+                <div class="glass-panel tilt-card rounded-3xl overflow-hidden relative group">
+                    <div class="grid md:grid-cols-2 gap-0">
+                        <!-- Image Section -->
+                        <div class="relative h-64 md:h-auto overflow-hidden">
+                            <img src="img/project_ai_x.png" alt="AI-ProjectX"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent opacity-90 md:bg-gradient-to-r">
+                            </div>
+
+                            <!-- Floating Badge -->
+                            <div class="absolute top-4 left-4">
+                                <span
+                                    class="bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 backdrop-blur-md px-4 py-1 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(34,211,238,0.3)]">
+                                    <i class="fa-solid fa-star mr-2"></i>Flagship Project
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Content Section -->
+                        <div
+                            class="p-8 md:p-12 flex flex-col justify-center relative z-10 glass-panel border-0 bg-opacity-30">
+                            <h3 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                                AI-Project<span class="text-cyan-400">X</span>
+                            </h3>
+                            <p class="text-gray-300 text-lg mb-6 leading-relaxed">
+                                A centralized repository showcasing a diverse collection of AI-powered applications.
+                                Features specialized modules for <span class="text-cyan-200">Smart Traffic
+                                    Analytics</span>,
+                                <span class="text-purple-200">AI Recruitment</span>, and
+                                <span class="text-pink-200">Financial Insight</span>.
+                                Demonstrating the versatility of Computer Vision (OpenCV) and modern Machine Learning
+                                algorithms across different domains.
+                            </p>
+
+                            <div class="flex flex-wrap gap-3 mb-8">
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">Python</span>
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">OpenCV</span>
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">TensorFlow</span>
+                                <span
+                                    class="px-4 py-2 bg-gray-800/80 rounded-lg text-sm font-mono text-cyan-300 border border-cyan-900/50">YOLOv8</span>
+                            </div>
+
+                            <a href="https://github.com/Thanarat-Int/AI-ProjectX/tree/main" target="_blank"
+                                class="inline-flex justify-center items-center gap-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-cyan-500 hover:to-blue-500 hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all duration-300 transform hover:-translate-y-1">
+                                <span>Explore Core Code</span>
+                                <i class="fa-brands fa-github text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="py-24 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">Certificates</h2>
+
+                <!-- 3D Swiper Carousel -->
+                <div class="certificates-swiper swiper-container pb-12">
+                    <div class="swiper-wrapper">
+
+                        <!-- AWS Certificate 1 -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/my-aws-cert1.jpg')">
+                            <img src="assets/certificates/my-aws-cert1.jpg" alt="AWS Certificate 1">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">AWS Cloud Practitioner</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Amazon Web Services</p>
+                            </div>
+                        </div>
+
+                        <!-- AWS Certificate 2 -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/my-aws-cert2.jpg')">
+                            <img src="assets/certificates/my-aws-cert2.jpg" alt="AWS Certificate 2">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">DevOps on AWS</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Amazon Web Services</p>
+                            </div>
+                        </div>
+
+                        <!-- FreeCodeCamp ML -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Machine Learning with Python freeCodeCamp.png')">
+                            <img src="assets/certificates/Machine Learning with Python freeCodeCamp.png"
+                                alt="Machine Learning with Python">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Machine Learning (Python)</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">freeCodeCamp</p>
+                            </div>
+                        </div>
+
+                        <!-- FreeCodeCamp Data Analysis -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Data Analysis with Python freeCodeCamp.png')">
+                            <img src="assets/certificates/Data Analysis with Python freeCodeCamp.png"
+                                alt="Data Analysis with Python">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Data Analysis (Python)</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">freeCodeCamp</p>
+                            </div>
+                        </div>
+
+                        <!-- Scrimba AI -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Scrimba_AI_Engineering Specialization.jpeg')">
+                            <img src="assets/certificates/Scrimba_AI_Engineering Specialization.jpeg"
+                                alt="AI Engineering Specialization">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">AI Engineering</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Scrimba | Coursera</p>
+                            </div>
+                        </div>
+
+                        <!-- Udemy Python -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/Python Pro Bootcamp.jpg')">
+                            <img src="assets/certificates/Python Pro Bootcamp.jpg" alt="Python Pro Bootcamp">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Python Pro Bootcamp</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Udemy</p>
+                            </div>
+                        </div>
+
+                        <!-- Google Data Analytics -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/Google Data Analytics.png')">
+                            <img src="assets/certificates/Google Data Analytics.png" alt="Google Data Analytics">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Google Data Analytics</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Google</p>
+                            </div>
+                        </div>
+
+                        <!-- Google IT Automation -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Google IT Automation with Python.png')">
+                            <img src="assets/certificates/Google IT Automation with Python.png"
+                                alt="Google IT Automation">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">IT Automation (Python)</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Google</p>
+                            </div>
+                        </div>
+
+                        <!-- IBM Generative AI -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/IBM Generative AI Engineering.jpeg')">
+                            <img src="assets/certificates/IBM Generative AI Engineering.jpeg"
+                                alt="IBM Generative AI Engineering">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Generative AI Engineering</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">IBM</p>
+                            </div>
+                        </div>
+
+                        <!-- Meta Data Analyst -->
+                        <div class="swiper-slide" onclick="openModal('assets/certificates/Meta Data Analyst.jpg')">
+                            <img src="assets/certificates/Meta Data Analyst.jpg" alt="Meta Data Analyst">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Meta Data Analyst</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Meta</p>
+                            </div>
+                        </div>
+
+                        <!-- Microsoft AI -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Microsoft AI & ML Engineering.jpg')">
+                            <img src="assets/certificates/Microsoft AI & ML Engineering.jpg"
+                                alt="Microsoft AI & ML Engineering">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">AI & ML Engineering</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Microsoft</p>
+                            </div>
+                        </div>
+
+                        <!-- Gemini Educator -->
+                        <div class="swiper-slide"
+                            onclick="openModal('assets/certificates/Gemini Certified Educator.jpg')">
+                            <img src="assets/certificates/Gemini Certified Educator.jpg"
+                                alt="Gemini Certified Educator">
+                            <div class="swiper-slide-content">
+                                <h3 class="font-bold text-lg mb-1 text-white">Gemini Certified Educator</h3>
+                                <p class="text-cyan-400 text-xs uppercase tracking-wider">Google for Education</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination certificates-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Modal -->
+        <div id="modal"
+            class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm z-[999] flex justify-center items-center p-4 transition-opacity duration-300">
+            <div class="relative bg-gray-900 border border-gray-700 p-2 sm:p-4 rounded-lg">
+                <button id="modal-close-btn"
+                    class="absolute -top-4 -right-4 text-white bg-black rounded-full w-10 h-10 text-2xl z-10 hover:bg-white hover:text-black transition-colors">&times;</button>
+                <img id="modal-img" src="" alt="Certificate"
+                    class="block object-contain rounded-md max-w-[90vw] max-h-[90vh]">
+            </div>
+        </div>
+
+        <!-- Footer (No Changes) -->
+        <footer class="text-center py-10 text-gray-400 border-t border-gray-800">
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-x-8 gap-y-4 mb-4">
+                <a href="mailto:thanarataix@gmail.com"
+                    class="flex items-center gap-3 hover:text-white transition-colors" aria-label="Email"><i
+                        class="fa-solid fa-envelope text-xl"></i><span>thanarataix@gmail.com</span></a>
+                <a href="https://github.com/Thanarat-Int" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center gap-3 hover:text-white transition-colors" aria-label="GitHub"><i
+                        class="fa-brands fa-github text-xl"></i><span>https://github.com/Thanarat-Int</span></a>
+                <span class="flex items-center gap-3"><i class="fa-solid fa-phone text-xl"
+                        aria-hidden="true"></i><span>+66 95-934-4939</span></span>
+            </div>
+            <p class="text-sm">&copy; 2025 thanarat Int. All Rights Reserved.</p>
+        </footer>
+
+        <!-- Swiper.js -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <!-- Custom JS -->
+        <script src="js/main.js"></script>
+</body>
+
+</html>
