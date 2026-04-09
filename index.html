@@ -34,38 +34,29 @@
     <div id="verse-gate" class="verse-gate">
         <div class="gate-door gate-left"></div>
         <div class="gate-door gate-right"></div>
-        <div class="gate-glow"></div>
-        <div class="gate-veil"></div>
-        <div class="gate-scanlines"></div>
-        <div id="gate-rain" class="gate-rain" aria-hidden="true"></div>
 
-        <!-- AI Neural Network Background -->
-        <canvas id="gate-neural-canvas" class="gate-neural-canvas"></canvas>
+        <!-- Background -->
+        <div class="vg-stars"></div>
+        <div class="vg-aurora"></div>
+        <div class="vg-vignette"></div>
 
-        <!-- Floating AI Particles -->
-        <div class="gate-particles" id="gate-particles"></div>
+        <!-- Subtle ambient rings -->
+        <div class="vg-ring vg-ring-1"></div>
+        <div class="vg-ring vg-ring-2"></div>
 
-        <!-- Orbiting Rings -->
-        <div class="gate-orbit-system">
-            <div class="gate-orbit gate-orbit-1"></div>
-            <div class="gate-orbit gate-orbit-2"></div>
-            <div class="gate-orbit gate-orbit-3"></div>
-            <div class="gate-orbit-core">
-                <i class="fa-solid fa-brain"></i>
+        <!-- Click anywhere to enter -->
+        <button id="gate-enter-btn" class="vg-stage" aria-label="Enter">
+            <div class="vg-aura"></div>
+            <h1 class="vg-title">
+                <span class="vg-letter">T</span><span class="vg-letter">H</span><span class="vg-letter">A</span><span class="vg-letter">N</span><span class="vg-letter">A</span><span class="vg-letter">R</span><span class="vg-letter">A</span><span class="vg-letter">T</span><span class="vg-letter-space"></span><span class="vg-letter">C</span><span class="vg-letter">.</span>
+            </h1>
+            <div class="vg-line">
+                <span class="vg-line-bar"></span>
+                <span class="vg-enter-text">ENTER</span>
+                <span class="vg-line-bar"></span>
             </div>
-        </div>
-
-        <div class="gate-content">
-            <div class="gate-title">
-                <span class="gate-title-main gate-name-glow">THANARAT C.</span>
-            </div>
-            <div class="gate-role-text">AI Engineer</div>
-            <button id="gate-enter-btn" class="gate-enter-circle" aria-label="Enter">
-                <span class="gate-enter-ring"></span>
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
-            <div class="gate-tap-hint">Tap to enter</div>
-        </div>
+            <div class="vg-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        </button>
     </div>
 
     <!-- Time-Warp Intro -->
@@ -148,8 +139,8 @@
 
     <main class="container mx-auto px-6">
         <!-- Hero Section -->
-        <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 flex items-center">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+        <section id="home" class="pt-32 pb-20 lg:pt-40 lg:pb-28 flex items-center relative">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
                 <div class="fade-in-section">
                     <h1 class="text-5xl md:text-8xl font-bold leading-tight text-white mb-6 text-glow tracking-tight hero-echo">
                         Hello, I'm <span class="text-gradient-verse">Thanarat Chuephasuk.</span>
@@ -167,13 +158,36 @@
                             Resume</button>
                     </div>
                 </div>
+
+                <!-- Holographic Profile -->
                 <div class="flex justify-center items-center fade-in-section" style="transition-delay: 200ms;">
-                    <div
-                        class="profile-glow w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl bg-gray-800 animate-float border-4 border-white/10">
-                        <img src="img/profile.jpg" alt="Thanarat Chuephasuk" class="w-full h-full object-cover">
+                    <div class="profile-holo-system">
+                        <!-- Outer rotating ring (dashed cyan) -->
+                        <div class="profile-ring-outer"></div>
+                        <!-- Mid rotating ring (purple solid + node) -->
+                        <div class="profile-ring-mid"></div>
+                        <!-- Conic gradient halo behind image -->
+                        <div class="profile-conic-halo"></div>
+
+                        <!-- Holo Frame + Profile -->
+                        <div class="profile-holo-frame">
+                            <div class="profile-frame-glow"></div>
+                            <div class="profile-img-wrap">
+                                <img src="img/profile.jpg" alt="Thanarat Chuephasuk">
+                                <div class="profile-scan-line"></div>
+                                <div class="profile-overlay-grid"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Scroll Cue -->
+            <a href="#ai-companion" class="hero-scroll-cue" aria-label="Scroll to explore">
+                <div class="scroll-cue-text">SCROLL TO EXPLORE</div>
+                <div class="scroll-cue-line"></div>
+                <div class="scroll-cue-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+            </a>
         </section>
 
         <!-- AI Companion Section -->
@@ -261,7 +275,7 @@
                             <div class="exp-card-header">
                                 <span class="exp-badge exp-badge-current">
                                     <span class="exp-badge-pulse"></span>
-                                    Feb. 2026 - Present
+                                    2026
                                 </span>
                                 <div class="exp-card-number">01</div>
                             </div>
@@ -274,35 +288,19 @@
                             <ul class="exp-details">
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-microchip"></i></span>
-                                    <span>Led the transformation of legacy ERP into a fully AI-native ERP platform with natural language querying and multi-LLM orchestration.</span>
-                                </li>
-                                <li>
-                                    <span class="exp-detail-icon"><i class="fa-solid fa-robot"></i></span>
-                                    <span>Built an enterprise RAG-based chatbot integrated with ERP for intelligent organizational data retrieval.</span>
-                                </li>
-                                <li>
-                                    <span class="exp-detail-icon"><i class="fa-solid fa-microphone-lines"></i></span>
-                                    <span>Developed AI voice and meeting systems with real-time listening, contextual analysis, and strategic response capabilities.</span>
-                                </li>
-                                <li>
-                                    <span class="exp-detail-icon"><i class="fa-solid fa-arrows-spin"></i></span>
-                                    <span>Drove company-wide AI integration and automation initiatives across business functions.</span>
-                                </li>
-                                <li>
-                                    <span class="exp-detail-icon"><i class="fa-solid fa-code"></i></span>
-                                    <span>Architect and develop assigned programs by deeply integrating AI and Automation across all business contexts to maximize operational efficiency.</span>
+                                    <span>Design and develop AI-enabled applications and automation solutions for assigned business use cases.</span>
                                 </li>
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-diagram-project"></i></span>
-                                    <span>Analyze and modernize legacy workflows by implementing emerging technologies and AI applications to drive organizational digital transformation.</span>
+                                    <span>Analyze legacy workflows and implement modern tools and AI applications to improve efficiency and support digital transformation.</span>
                                 </li>
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-people-arrows"></i></span>
-                                    <span>Lead the adoption of AI-driven solutions for diverse assigned projects, ensuring intelligent automation in every functional area.</span>
+                                    <span>Partner with cross-functional teams to deliver AI-driven solutions aligned with operational needs.</span>
                                 </li>
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-chart-line"></i></span>
-                                    <span>Strategically manage the expenditure for AI models and digital tools, ensuring high-performance capabilities and a strong ROI for the organization.</span>
+                                    <span>Manage AI model and digital tool usage with attention to performance, cost efficiency, and return on investment.</span>
                                 </li>
                             </ul>
                             <div class="exp-tech-tags">
@@ -323,7 +321,7 @@
                         </div>
                         <div class="exp-card tilt-card">
                             <div class="exp-card-header">
-                                <span class="exp-badge exp-badge-green">Feb. 2021 - Feb. 2026</span>
+                                <span class="exp-badge exp-badge-green">2021 - 2026</span>
                                 <div class="exp-card-number">02</div>
                             </div>
                             <h3 class="text-2xl md:text-3xl font-bold text-white mt-4">IT Infrastructure Section Head</h3>
@@ -335,27 +333,23 @@
                             <ul class="exp-details">
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-users-gear"></i></span>
-                                    <span>Led and coordinated the infrastructure team for new branch setups, ensuring 100% operational readiness on schedule.</span>
+                                    <span>Led infrastructure rollout for new branches, ensuring reliable deployment, high availability, and on-time readiness.</span>
                                 </li>
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-gears"></i></span>
-                                    <span>Executed automated deployment pipelines via AWX (Ansible) to provision Linux servers, managing inventory and network configurations.</span>
+                                    <span>Automated Linux and POS provisioning using AWX (Ansible).</span>
                                 </li>
                                 <li>
-                                    <span class="exp-detail-icon"><i class="fa-solid fa-cash-register"></i></span>
-                                    <span>Managed POS device provisioning via AWX by registering Android IDs to Linux servers, ensuring seamless client-server integration.</span>
+                                    <span class="exp-detail-icon"><i class="fa-brands fa-python"></i></span>
+                                    <span>Built Python scripts to streamline system administration and operational tasks.</span>
                                 </li>
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-bug-slash"></i></span>
-                                    <span>Diagnosed and resolved deployment failures by analyzing Ansible error logs and correcting server configurations, reducing escalation to the DevOps team.</span>
-                                </li>
-                                <li>
-                                    <span class="exp-detail-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-                                    <span>Designed a Python-based automation tool to generate Fortinet firewall scripts, reducing setup time from 20 minutes to under 10 seconds per branch.</span>
+                                    <span>Troubleshot deployment and configuration issues across branch environments.</span>
                                 </li>
                                 <li>
                                     <span class="exp-detail-icon"><i class="fa-solid fa-network-wired"></i></span>
-                                    <span>Managed Enterprise Network Infrastructure (Fortinet Firewalls, Cisco Switches, Wireless APs) across multiple branches.</span>
+                                    <span>Managed enterprise network infrastructure including Fortinet, Cisco, and access points.</span>
                                 </li>
                             </ul>
                             <div class="exp-tech-tags">
@@ -376,7 +370,7 @@
                         </div>
                         <div class="exp-card tilt-card">
                             <div class="exp-card-header">
-                                <span class="exp-badge exp-badge-blue">Sep. 2020 - Jan. 2021</span>
+                                <span class="exp-badge exp-badge-blue">2020 - 2021</span>
                                 <div class="exp-card-number">03</div>
                             </div>
                             <h3 class="text-2xl md:text-3xl font-bold text-white mt-4">IT Officer</h3>
@@ -387,8 +381,12 @@
                             <div class="exp-divider"></div>
                             <ul class="exp-details">
                                 <li>
-                                    <span class="exp-detail-icon"><i class="fa-solid fa-headset"></i></span>
-                                    <span>Provided remote support, hardware/software maintenance, system improvement, and data backup for warehouse operations.</span>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-warehouse"></i></span>
+                                    <span>Maintained warehouse IT systems, supported basic server setup, and provided remote troubleshooting.</span>
+                                </li>
+                                <li>
+                                    <span class="exp-detail-icon"><i class="fa-solid fa-database"></i></span>
+                                    <span>Managed backups and automated routine tasks to improve support efficiency.</span>
                                 </li>
                             </ul>
                             <div class="exp-tech-tags">
@@ -407,7 +405,7 @@
                         </div>
                         <div class="exp-card tilt-card">
                             <div class="exp-card-header">
-                                <span class="exp-badge exp-badge-purple">May. 2016 - March 2018</span>
+                                <span class="exp-badge exp-badge-purple">2016 - 2018</span>
                                 <div class="exp-card-number">04</div>
                             </div>
                             <h3 class="text-2xl md:text-3xl font-bold text-white mt-4">Game Developer & Admin</h3>
@@ -546,6 +544,9 @@
                             <span class="skill-pill">JavaScript</span>
                             <span class="skill-pill">Java</span>
                             <span class="skill-pill">C#</span>
+                            <span class="skill-pill">C++</span>
+                            <span class="skill-pill">Golang</span>
+                            <span class="skill-pill">R</span>
                             <span class="skill-pill">HTML</span>
                             <span class="skill-pill">CSS</span>
                         </div>
@@ -557,15 +558,21 @@
                         <div class="skill-card-icon bg-purple-500/10 text-purple-400">
                             <i class="fa-solid fa-cubes"></i>
                         </div>
-                        <h4 class="skill-card-title">Frameworks</h4>
+                        <h4 class="skill-card-title">Frameworks & Libraries</h4>
                         <div class="skill-card-pills">
                             <span class="skill-pill">FastAPI</span>
                             <span class="skill-pill">React</span>
                             <span class="skill-pill">Next.js</span>
                             <span class="skill-pill">Node.js</span>
+                            <span class="skill-pill">PyTorch</span>
+                            <span class="skill-pill">TensorFlow</span>
+                            <span class="skill-pill">Pandas</span>
+                            <span class="skill-pill">NumPy</span>
+                            <span class="skill-pill">OpenCV</span>
                             <span class="skill-pill">Robot Framework</span>
+                            <span class="skill-pill">Playwright</span>
+                            <span class="skill-pill">Selenium</span>
                             <span class="skill-pill">Apache Airflow</span>
-                            <span class="skill-pill">Prefect</span>
                         </div>
                     </div>
 
@@ -575,7 +582,7 @@
                         <div class="skill-card-icon bg-yellow-500/10 text-yellow-400">
                             <i class="fa-solid fa-database"></i>
                         </div>
-                        <h4 class="skill-card-title">Database</h4>
+                        <h4 class="skill-card-title">Databases & Vector Stores</h4>
                         <div class="skill-card-pills">
                             <span class="skill-pill">SQL Server</span>
                             <span class="skill-pill">PostgreSQL</span>
@@ -594,14 +601,16 @@
                         <div class="skill-card-icon bg-green-500/10 text-green-400">
                             <i class="fa-solid fa-server"></i>
                         </div>
-                        <h4 class="skill-card-title">Infrastructure</h4>
+                        <h4 class="skill-card-title">Infrastructure & Cloud</h4>
                         <div class="skill-card-pills">
-                            <span class="skill-pill">GCP (Vertex AI)</span>
+                            <span class="skill-pill">Google Cloud (Vertex AI)</span>
+                            <span class="skill-pill">AWS</span>
                             <span class="skill-pill">Linux Server</span>
                             <span class="skill-pill">Windows Server</span>
-                            <span class="skill-pill">Networking</span>
                             <span class="skill-pill">VMware</span>
-                            <span class="skill-pill">Ubuntu</span>
+                            <span class="skill-pill">Networking</span>
+                            <span class="skill-pill">Fortinet</span>
+                            <span class="skill-pill">Cisco</span>
                         </div>
                     </div>
 
@@ -805,6 +814,10 @@
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
+                    <div class="flex items-center justify-between relative z-10 mb-2">
+                        <span class="text-xs font-mono text-cyan-400 tracking-widest uppercase">Aug 2025</span>
+                        <i class="fa-solid fa-graduation-cap text-cyan-400"></i>
+                    </div>
                     <h3 class="text-xl font-bold text-white relative z-10">Bachelor's Degree in Information Technology
                     </h3>
                     <p class="italic text-cyan-200 mt-1 relative z-10">Sripatum University, School of Information
@@ -817,6 +830,10 @@
                 <div class="glass-panel tilt-card p-8 rounded-2xl relative overflow-hidden group">
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="flex items-center justify-between relative z-10 mb-2">
+                        <span class="text-xs font-mono text-pink-400 tracking-widest uppercase">Sep 2019</span>
+                        <i class="fa-solid fa-graduation-cap text-pink-400"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white relative z-10">Diploma in Business Computer</h3>
                     <p class="italic text-cyan-200 mt-1 relative z-10">Eastern College of Technology</p>

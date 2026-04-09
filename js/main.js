@@ -31,104 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (verseGate) {
         document.body.classList.add('gate-locked');
         gateBtn?.addEventListener('click', openGate);
-
-        // Rain drops
-        if (gateRain) {
-            for (let i = 0; i < 30; i++) {
-                const drop = document.createElement('span');
-                drop.style.left = `${Math.random() * 100}%`;
-                drop.style.animationDelay = `${Math.random() * 4}s`;
-                drop.style.animationDuration = `${3 + Math.random() * 3}s`;
-                drop.style.height = `${60 + Math.random() * 100}px`;
-                gateRain.appendChild(drop);
-            }
-        }
-
-        // Floating particles
-        const gateParticles = document.getElementById('gate-particles');
-        if (gateParticles) {
-            for (let i = 0; i < 25; i++) {
-                const p = document.createElement('div');
-                p.className = 'gate-particle';
-                p.style.left = `${Math.random() * 100}%`;
-                p.style.animationDuration = `${4 + Math.random() * 8}s`;
-                p.style.animationDelay = `${Math.random() * 6}s`;
-                p.style.width = p.style.height = `${2 + Math.random() * 3}px`;
-                if (Math.random() > 0.6) {
-                    p.style.background = 'var(--verse-accent-purple)';
-                    p.style.boxShadow = '0 0 6px rgba(192,132,252,0.6)';
-                }
-                gateParticles.appendChild(p);
-            }
-        }
-
-        // Neural network canvas
-        const neuralCanvas = document.getElementById('gate-neural-canvas');
-        if (neuralCanvas) {
-            const nCtx = neuralCanvas.getContext('2d');
-            let neuralNodes = [];
-            let neuralAnimId = null;
-
-            function resizeNeuralCanvas() {
-                neuralCanvas.width = window.innerWidth;
-                neuralCanvas.height = window.innerHeight;
-                initNeuralNodes();
-            }
-
-            function initNeuralNodes() {
-                neuralNodes = [];
-                const count = Math.floor((neuralCanvas.width * neuralCanvas.height) / 30000);
-                for (let i = 0; i < count; i++) {
-                    neuralNodes.push({
-                        x: Math.random() * neuralCanvas.width,
-                        y: Math.random() * neuralCanvas.height,
-                        vx: (Math.random() - 0.5) * 0.4,
-                        vy: (Math.random() - 0.5) * 0.4,
-                        r: Math.random() * 1.5 + 0.5
-                    });
-                }
-            }
-
-            function drawNeural() {
-                nCtx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
-                neuralNodes.forEach(n => {
-                    n.x += n.vx;
-                    n.y += n.vy;
-                    if (n.x < 0 || n.x > neuralCanvas.width) n.vx *= -1;
-                    if (n.y < 0 || n.y > neuralCanvas.height) n.vy *= -1;
-                    nCtx.beginPath();
-                    nCtx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-                    nCtx.fillStyle = 'rgba(34, 211, 238, 0.4)';
-                    nCtx.fill();
-                });
-                for (let i = 0; i < neuralNodes.length; i++) {
-                    for (let j = i + 1; j < neuralNodes.length; j++) {
-                        const d = Math.hypot(neuralNodes[i].x - neuralNodes[j].x, neuralNodes[i].y - neuralNodes[j].y);
-                        if (d < 140) {
-                            nCtx.beginPath();
-                            nCtx.moveTo(neuralNodes[i].x, neuralNodes[i].y);
-                            nCtx.lineTo(neuralNodes[j].x, neuralNodes[j].y);
-                            nCtx.strokeStyle = `rgba(34, 211, 238, ${(1 - d / 140) * 0.2})`;
-                            nCtx.stroke();
-                        }
-                    }
-                }
-                neuralAnimId = requestAnimationFrame(drawNeural);
-            }
-
-            window.addEventListener('resize', resizeNeuralCanvas);
-            resizeNeuralCanvas();
-            drawNeural();
-
-            // Stop neural animation when gate opens
-            const origOpen = openGate;
-            openGate = function () {
-                if (neuralAnimId) cancelAnimationFrame(neuralAnimId);
-                origOpen();
-            };
-            gateBtn?.removeEventListener('click', origOpen);
-            gateBtn?.addEventListener('click', openGate);
-        }
     } else {
         window.addEventListener('load', runTimeWarp);
     }
@@ -701,7 +603,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const typingText = document.getElementById('typing-text');
     if (typingText) {
         const roles = [
-            "Applied AI Engineer"
+            "Applied AI Engineer",
+            "AI Automation Engineer",
+            "AI Context Engineer"
         ];
         let roleIndex = 0;
         let charIndex = 0;
