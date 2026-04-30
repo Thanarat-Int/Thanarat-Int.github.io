@@ -604,8 +604,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (typingText) {
         const roles = [
             "Applied AI Engineer",
-            "AI Automation Engineer",
-            "AI Context Engineer"
+            "AI Automation Engineer"
         ];
         let roleIndex = 0;
         let charIndex = 0;
