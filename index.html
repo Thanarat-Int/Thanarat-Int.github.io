@@ -32,41 +32,29 @@
 </head>
 
 <body class="antialiased gate-locked">
-    <!-- Verse Gate -->
+    <!-- Verse Gate — minimalist editorial intro -->
     <div id="verse-gate" class="verse-gate">
-        <div class="gate-door gate-left"></div>
-        <div class="gate-door gate-right"></div>
+        <div class="vg-blobs" aria-hidden="true">
+            <span class="vg-blob vg-blob-a"></span>
+            <span class="vg-blob vg-blob-b"></span>
+            <span class="vg-blob vg-blob-c"></span>
+        </div>
+        <div class="vg-aurora" aria-hidden="true"></div>
+        <canvas id="vg-star-canvas" class="vg-starfield" aria-hidden="true"></canvas>
+        <div class="vg-grid" aria-hidden="true"></div>
+        <div class="vg-beam" aria-hidden="true"></div>
+        <div class="vg-spotlight" aria-hidden="true"></div>
 
-        <!-- Background -->
-        <div class="vg-stars"></div>
-        <div class="vg-aurora"></div>
-        <div class="vg-vignette"></div>
-
-        <!-- Subtle ambient rings -->
-        <div class="vg-ring vg-ring-1"></div>
-        <div class="vg-ring vg-ring-2"></div>
-
-        <!-- Click anywhere to enter -->
-        <button id="gate-enter-btn" class="vg-stage" aria-label="Enter">
-            <div class="vg-aura"></div>
-            <h1 class="vg-title">
-                <span class="vg-letter">T</span><span class="vg-letter">H</span><span class="vg-letter">A</span><span class="vg-letter">N</span><span class="vg-letter">A</span><span class="vg-letter">R</span><span class="vg-letter">A</span><span class="vg-letter">T</span><span class="vg-letter-space"></span><span class="vg-letter">C</span><span class="vg-letter">.</span>
-            </h1>
-            <div class="vg-line">
-                <span class="vg-line-bar"></span>
-                <span class="vg-enter-text">ENTER</span>
-                <span class="vg-line-bar"></span>
-            </div>
-            <div class="vg-arrow"><i class="fa-solid fa-chevron-down"></i></div>
+        <button id="gate-enter-btn" class="vg-stage" aria-label="Enter site">
+            <h1 class="vg-name">Thanarat C.</h1>
+            <span class="vg-rule"></span>
+            <p class="vg-role">Applied AI Engineer</p>
+            <span class="vg-enter">
+                <span class="vg-enter-label" id="vg-enter-label">Explore</span>
+                <i class="fa-solid fa-arrow-right vg-enter-arrow"></i>
+            </span>
+            <span class="vg-progress" aria-hidden="true"><span class="vg-progress-fill"></span></span>
         </button>
-    </div>
-
-    <!-- Time-Warp Intro -->
-    <div id="time-warp" class="time-warp">
-        <div class="time-warp-core"></div>
-        <div class="time-warp-ring ring-1"></div>
-        <div class="time-warp-ring ring-2"></div>
-        <div class="time-warp-ring ring-3"></div>
     </div>
 
     <!-- Header -->
@@ -129,7 +117,7 @@
 
     <!-- AI Signal HUD -->
     <div id="ai-hud" class="ai-hud">
-        <div class="hud-title">PATHA AI</div>
+        <div class="hud-title">BABATA AI</div>
         <div class="hud-status">
             <span class="hud-dot"></span>
             <span id="hud-text">READY</span>
@@ -195,22 +183,22 @@
         <!-- AI Companion Section -->
         <section id="ai-companion" class="py-20 fade-in-section">
             <h2 class="text-3xl font-bold text-center mb-4">AI Companion</h2>
-            <p class="text-center text-gray-400 text-sm mb-16 tracking-widest uppercase font-mono">Ask Patha AI anything about me</p>
+            <p class="text-center text-gray-400 text-sm mb-16 tracking-widest uppercase font-mono">Ask Babata AI anything about me</p>
             <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
                 <div class="ai-avatar-panel">
-                    <img src="assets/pathawing_rm.png" alt="Patha AI" class="ai-avatar-img">
+                    <img src="assets/babatawing_rm.png" alt="Babata AI" class="ai-avatar-img">
                     <div class="ai-avatar-aura"></div>
                     <div class="ai-avatar-speech-line"></div>
-                    <div class="ai-avatar-title">Patha AI</div>
+                    <div class="ai-avatar-title">Babata AI</div>
                 </div>
                 <div class="ai-chat-panel">
                     <div class="ai-chat-header">
                         <span class="ai-chat-header-dot"></span>
-                        <span class="ai-chat-header-title">Patha AI</span>
+                        <span class="ai-chat-header-title">Babata AI</span>
                         <span class="ai-chat-header-status">Online</span>
                     </div>
                     <div id="ai-chat-log" class="ai-chat-log">
-                        <div class="ai-bubble ai-bubble-bot">Hello, I'm Patha AI. Feel free to ask anything about my boss.</div>
+                        <div class="ai-bubble ai-bubble-bot">สวัสดีค่ะ ดิฉัน Babata เลขาส่วนตัวของคุณกอล์ฟ ยินดีให้ข้อมูลเกี่ยวกับคุณกอล์ฟค่ะ</div>
                     </div>
                     <div class="ai-chat-input">
                         <input id="ai-question-input" type="text" placeholder="ถามเกี่ยวกับธนรัช เช่น เป้าหมายในสายงานคืออะไร?">
@@ -395,7 +383,7 @@
                         </div>
                     </div>
 
-                    <!-- 4. Game Developer & Admin -->
+                    <!-- 4. Assistant Game Master -->
                     <div class="exp-card-wrap exp-card-left fade-in-section">
                         <div class="exp-node">
                             <div class="exp-node-ring"></div>
@@ -407,7 +395,7 @@
                                 <span class="exp-duration">2 yrs</span>
                                 <div class="exp-card-number">04</div>
                             </div>
-                            <h3 class="exp-role">Game Developer &amp; Admin</h3>
+                            <h3 class="exp-role">Assistant Game Master</h3>
                             <div class="exp-company-row">
                                 <span class="exp-company-icon"><i class="fa-solid fa-gamepad"></i></span>
                                 <div>
@@ -674,7 +662,7 @@
                     <!-- Verse AI Figure (sit on Project edge) -->
                     <div class="verse-ai-figure project-verse-figure">
                         <div class="ai-figure-glow"></div>
-                        <img src="assets/pathax-rm.png" alt="AI Verse Figure" class="ai-figure-img">
+                        <img src="assets/babatax-rm.png" alt="AI Verse Figure" class="ai-figure-img">
                         <div class="ai-figure-base"></div>
                         <div class="ai-figure-scanline"></div>
                     </div>
@@ -812,14 +800,19 @@
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
-                    <div class="flex items-center justify-between relative z-10 mb-2">
-                        <span class="text-xs font-mono text-cyan-400 tracking-widest uppercase">Aug 2025</span>
+                    <div class="flex items-center justify-between relative z-10 mb-4">
+                        <span class="edu-date"><i class="fa-regular fa-calendar"></i>Aug 2025</span>
                         <i class="fa-solid fa-graduation-cap text-cyan-400"></i>
                     </div>
+                    <a href="https://www.chonburi.spu.ac.th/web/public/" target="_blank" rel="noopener noreferrer"
+                        class="edu-logo-chip relative z-10" aria-label="Sripatum University website">
+                        <img src="img/edu-spu.png" alt="Sripatum University logo" class="edu-logo" loading="lazy">
+                    </a>
                     <h3 class="text-xl font-bold text-white relative z-10">Bachelor's Degree in Information Technology
                     </h3>
-                    <p class="italic text-cyan-200 mt-1 relative z-10">Sripatum University, School of Information
-                        Technology</p>
+                    <a href="https://www.chonburi.spu.ac.th/web/public/" target="_blank" rel="noopener noreferrer"
+                        class="edu-school-link italic text-cyan-200 mt-1 relative z-10">Sripatum University, School of
+                        Information Technology<i class="fa-solid fa-arrow-up-right-from-square edu-link-icon"></i></a>
                     <p class="mt-4 text-sm text-gray-300 relative z-10"><strong class="text-white">Relevant
                             Coursework:</strong>
                         Computer Networking, Microsoft Power Platform, Database Systems, Data Analytics, System
@@ -829,12 +822,19 @@
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
-                    <div class="flex items-center justify-between relative z-10 mb-2">
-                        <span class="text-xs font-mono text-pink-400 tracking-widest uppercase">Sep 2019</span>
+                    <div class="flex items-center justify-between relative z-10 mb-4">
+                        <span class="edu-date edu-date--pink"><i class="fa-regular fa-calendar"></i>Sep 2019</span>
                         <i class="fa-solid fa-graduation-cap text-pink-400"></i>
                     </div>
+                    <a href="https://www.e-tech.ac.th/site/index.php" target="_blank" rel="noopener noreferrer"
+                        class="edu-logo-chip relative z-10" aria-label="Eastern College of Technology website">
+                        <img src="img/edu-etech.png" alt="Eastern College of Technology logo" class="edu-logo"
+                            loading="lazy">
+                    </a>
                     <h3 class="text-xl font-bold text-white relative z-10">Diploma in Business Computer</h3>
-                    <p class="italic text-cyan-200 mt-1 relative z-10">Eastern College of Technology</p>
+                    <a href="https://www.e-tech.ac.th/site/index.php" target="_blank" rel="noopener noreferrer"
+                        class="edu-school-link italic text-cyan-200 mt-1 relative z-10">Eastern College of Technology<i
+                            class="fa-solid fa-arrow-up-right-from-square edu-link-icon"></i></a>
                     <p class="mt-4 text-sm text-gray-300 relative z-10"><strong class="text-white">Relevant
                             Coursework:</strong>
                         Database Management, Programming, Business Administration, Financial Management, System

@@ -5,35 +5,112 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
     });
 
-    // --- Time-Warp Intro ---
-    const timeWarp = document.getElementById('time-warp');
+    // --- Intro Gate ---
     const verseGate = document.getElementById('verse-gate');
     const gateBtn = document.getElementById('gate-enter-btn');
-    const gateRain = document.getElementById('gate-rain');
-
-    function runTimeWarp() {
-        if (!timeWarp) return;
-        timeWarp.classList.add('time-warp--show');
-        setTimeout(() => {
-            timeWarp.classList.add('time-warp--hide');
-            setTimeout(() => timeWarp.remove(), 1200);
-        }, 200);
-    }
+    const gateLabel = document.getElementById('vg-enter-label');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const GATE_LOADING_LABEL = 'Loading';
+    const GATE_LOADING_DURATION = prefersReducedMotion ? 350 : 900; // matches .vg-progress-fill animation
 
     function openGate() {
         if (!verseGate) return;
         verseGate.classList.add('gate-open');
         document.body.classList.remove('gate-locked');
-        runTimeWarp();
-        setTimeout(() => verseGate.remove(), 1400);
+        document.body.classList.add('entering-site');
+        setTimeout(() => verseGate.remove(), 900);
+    }
+
+    function startEnterSequence() {
+        if (!gateBtn || gateBtn.classList.contains('is-loading')) return;
+        gateBtn.classList.add('is-loading');
+        if (gateLabel) gateLabel.textContent = GATE_LOADING_LABEL;
+        setTimeout(openGate, GATE_LOADING_DURATION);
     }
 
     if (verseGate) {
         document.body.classList.add('gate-locked');
-        gateBtn?.addEventListener('click', openGate);
-    } else {
-        window.addEventListener('load', runTimeWarp);
+        gateBtn?.addEventListener('click', startEnterSequence);
     }
+
+    // --- Intro Drifting Starfield ---
+    (function initStarfield() {
+        const canvas = document.getElementById('vg-star-canvas');
+        if (!canvas || !verseGate) return;
+
+        const ctx = canvas.getContext('2d');
+        const COLORS = ['255,255,255', '186,230,253', '196,181,253'];
+        let w = 0, h = 0, dpr = 1, stars = [], last = 0;
+
+        function resize() {
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            w = canvas.clientWidth;
+            h = canvas.clientHeight;
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+
+        function seed() {
+            const count = Math.max(60, Math.min(180, Math.floor((w * h) / 9000)));
+            stars = Array.from({ length: count }, () => {
+                const z = 0.3 + Math.random() * 0.7; // depth → parallax + size + brightness
+                return {
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    z,
+                    r: 0.4 + z * 1.3,
+                    base: 0.25 + z * 0.55,
+                    tw: Math.random() * Math.PI * 2,          // twinkle phase
+                    tws: 0.6 + Math.random() * 1.4,           // twinkle speed
+                    color: COLORS[(Math.random() * COLORS.length) | 0]
+                };
+            });
+        }
+
+        // Slow diagonal drift; nearer (higher z) stars move faster → parallax depth
+        const DRIFT_X = 7, DRIFT_Y = 4; // px/sec at z = 1
+
+        function draw(t) {
+            const dt = last ? Math.min((t - last) / 1000, 0.05) : 0;
+            last = t;
+            ctx.clearRect(0, 0, w, h);
+
+            for (const s of stars) {
+                s.x += DRIFT_X * s.z * dt;
+                s.y += DRIFT_Y * s.z * dt;
+                if (s.x > w + 2) s.x = -2;
+                if (s.y > h + 2) s.y = -2;
+
+                const twinkle = 0.65 + 0.35 * Math.sin(t / 1000 * s.tws + s.tw);
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${s.color},${(s.base * twinkle).toFixed(3)})`;
+                ctx.fill();
+            }
+        }
+
+        function loop(t) {
+            if (!canvas.isConnected) return; // gate removed → stop cleanly
+            draw(t);
+            requestAnimationFrame(loop);
+        }
+
+        resize();
+        seed();
+
+        if (prefersReducedMotion) {
+            draw(0);
+        } else {
+            requestAnimationFrame(loop);
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            seed();
+            if (prefersReducedMotion) draw(0);
+        });
+    })();
 
     // --- Interactive Card Glow Effect ---
     document.querySelectorAll('.card-glow, .exp-card').forEach(card => {
@@ -424,9 +501,9 @@ document.addEventListener('DOMContentLoaded', function () {
         return bubble;
     }
 
-    function withPathaPrefix(text) {
+    function withBabataPrefix(text) {
         if (!text) return text;
-        return `Patha AI: ${text}`;
+        return `Babata AI: ${text}`;
     }
 
     function answerFromProfile(question) {
@@ -437,58 +514,132 @@ document.addEventListener('DOMContentLoaded', function () {
         const age = computeAge(profile.birthDate);
 
         if (q.includes('ชื่อเล่น') || q.includes('nickname')) {
-            return `บอสของฉันชื่อเล่น ${profile.nickname} ค่ะ`;
+            return `ชื่อเล่นของคุณกอล์ฟคือ "${profile.nickname}" ส่วนชื่อจริงคือ ${profile.fullName} ค่ะ`;
         }
         if (q.includes('ชื่อ') || q.includes('name')) {
-            return `บอสของฉันชื่อ ${profile.fullName} ชื่อเล่น ${profile.nickname} ค่ะ`;
+            return `คุณกอล์ฟมีชื่อจริงว่า ${profile.fullName} (ชื่อเล่น ${profile.nickname}) ค่ะ`;
         }
         if (q.includes('อายุ') || q.includes('age')) {
-            return `ตอนนี้บอสอายุ ${age || profile.ageNote} ปีค่ะ (${profile.ageNote})`;
+            return age ? `คุณกอล์ฟอายุ ${age} ปีค่ะ` : `คุณกอล์ฟเกิดวันที่ ${birthDate} ค่ะ`;
         }
-        if (q.includes('เกิด') || q.includes('birthday')) {
-            return `บอสเกิดวันที่ ${birthDate} ค่ะ`;
+        if (q.includes('เกิด') || q.includes('birthday') || q.includes('วันเกิด')) {
+            return `เกิดวันที่ ${birthDate} ค่ะ`;
         }
-        if (q.includes('สถานะ') || q.includes('โสด') || q.includes('แต่งงาน')) {
-            return `สถานะปัจจุบันของบอสคือ ${profile.maritalStatus} ค่ะ`;
+        if (q.includes('สถานะ') || q.includes('โสด') || q.includes('แต่งงาน') || q.includes('แฟน')) {
+            return `สถานะปัจจุบัน ${profile.maritalStatus} ค่ะ`;
         }
         if (q.includes('พี่น้อง') || q.includes('ลูกคนเดียว')) {
-            return `บอสเป็น${profile.siblings} ค่ะ`;
+            return `คุณกอล์ฟเป็น${profile.siblings}ค่ะ`;
         }
-        if (q.includes('พ่อ') || q.includes('แม่') || q.includes('ครอบครัว')) {
-            return `เกี่ยวกับครอบครัวของบอส: ${profile.parents} ค่ะ`;
+        if (q.includes('พ่อ') || q.includes('แม่') || q.includes('ครอบครัว') || q.includes('family')) {
+            return `${profile.parents} ค่ะ`;
+        }
+        if (q.includes('อยู่ที่ไหน') || q.includes('ที่อยู่') || q.includes('location') || q.includes('จังหวัด')) {
+            return `คุณกอล์ฟอยู่ที่กรุงเทพมหานคร ประเทศไทยค่ะ`;
         }
         if (q.includes('เป้าหมาย') || q.includes('goal') || q.includes('สายงาน')) {
-            return `เป้าหมายของบอสคือ ${profile.goals} (ตำแหน่งที่อยากทำ: ${profile.desiredRoles.join(', ')}) ค่ะ`;
+            return `${profile.goals} ค่ะ ตำแหน่งที่สนใจคือ ${profile.desiredRoles.join(', ')} ค่ะ`;
         }
         if (q.includes('ความฝัน') || q.includes('dream')) {
-            return `ความฝันของบอสคือ ${profile.dreams} ค่ะ`;
+            return `${profile.dreams} ค่ะ`;
         }
-        if (q.includes('งานอดิเรก') || q.includes('hobby')) {
-            return `งานอดิเรกของบอสคือ ${profile.hobbies} ค่ะ`;
+        if (q.includes('งานอดิเรก') || q.includes('hobby') || q.includes('ว่าง') || q.includes('ชอบทำอะไร')) {
+            return `งานอดิเรกของคุณกอล์ฟคือ ${profile.hobbies} ค่ะ`;
         }
-        if (q.includes('นิสัย') || q.includes('ลักษณะ') || q.includes('บุคลิก')) {
-            return `ลักษณะนิสัยของบอสคือ ${profile.traits} ค่ะ`;
+        if (q.includes('นิสัย') || q.includes('ลักษณะ') || q.includes('บุคลิก') || q.includes('personality')) {
+            return `${profile.traits} ค่ะ`;
         }
         if (q.includes('ติดต่อ') || q.includes('contact') || q.includes('เบอร์') || q.includes('โทร') || q.includes('email') || q.includes('เมล') || q.includes('github') || q.includes('portfolio')) {
-            const contact = profile.contact;
-            return `ติดต่อบอสได้ที่ โทร ${contact.phone} | อีเมล ${contact.email} | GitHub ${contact.github} | Portfolio ${contact.portfolio} ค่ะ`;
+            const c = profile.contact;
+            return `ติดต่อคุณกอล์ฟได้ที่ค่ะ\n• โทร ${c.phone}\n• อีเมล ${c.email}\n• GitHub ${c.github}\n• Portfolio ${c.portfolio}`;
         }
         return null;
     }
 
-    function answerFromKnowledge(question) {
-        const q = normalizeText(question);
-        if (!q || aiState.sections.length === 0) return null;
-        const tokens = q.split(' ');
+    // Common Thai/English filler words to ignore when scoring relevance
+    const TH_STOP = new Set([
+        'ครับ', 'ค่ะ', 'คะ', 'นะ', 'อ่ะ', 'อะ', 'หน่อย', 'ได้', 'ไหม', 'มั้ย', 'บ้าง', 'อะไร',
+        'ยังไง', 'อย่างไร', 'คือ', 'ของ', 'ที่', 'และ', 'หรือ', 'กับ', 'ให้', 'เป็น', 'มี', 'ไป',
+        'มา', 'ว่า', 'จะ', 'ใน', 'นี้', 'นั้น', 'ก็', 'เธอ', 'เขา', 'บอส', 'คุณ', 'ฉัน', 'ผม',
+        'the', 'a', 'an', 'is', 'are', 'do', 'does', 'you', 'your', 'what', 'who', 'how',
+        'tell', 'me', 'about', 'please', 'can', 'and', 'of'
+    ]);
+
+    function tokenize(text) {
+        return normalizeText(text).split(' ').filter(t => t && t.length >= 2 && !TH_STOP.has(t));
+    }
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    function hasAny(q, arr) { return arr.some(k => q.includes(k)); }
+    function sectionsMatching(...keys) {
+        return aiState.sections.filter(s => {
+            const t = normalizeText(s.title);
+            return keys.some(k => t.includes(k));
+        });
+    }
+
+    // 1) Greetings / meta questions about the assistant itself — composed female secretary
+    function answerSmallTalk(qRaw) {
+        const q = normalizeText(qRaw);
+        if (hasAny(q, ['สวัสดี', 'หวัดดี', 'ดีจ้า', 'ดีครับ', 'ดีค่ะ', 'hello', 'hi ', 'hey'])) {
+            return pick([
+                'สวัสดีค่ะ ดิฉัน Babata เลขาส่วนตัวของคุณกอล์ฟ ยินดีให้ข้อมูลเกี่ยวกับคุณกอล์ฟนะคะ',
+                'สวัสดีค่ะ มีอะไรอยากทราบเกี่ยวกับคุณกอล์ฟ สอบถามได้เลยค่ะ'
+            ]);
+        }
+        if (hasAny(q, ['ขอบคุณ', 'ขอบใจ', 'thank'])) {
+            return pick(['ยินดีค่ะ', 'ด้วยความยินดีค่ะ']);
+        }
+        if (hasAny(q, ['ลาก่อน', 'บายๆ', 'bye', 'goodbye'])) {
+            return 'ขอบคุณที่แวะเข้ามานะคะ';
+        }
+        if (hasAny(q, ['เธอคือใคร', 'คุณคือใคร', 'babata', 'บาบาต้า', 'who are you', 'เธอชื่ออะไร', 'แนะนำตัว'])) {
+            return 'ดิฉัน Babata เลขาส่วนตัวของคุณกอล์ฟค่ะ ยินดีให้ข้อมูลเกี่ยวกับทักษะ ผลงาน และประสบการณ์ของคุณกอล์ฟค่ะ';
+        }
+        if (hasAny(q, ['ทำอะไรได้', 'ช่วยอะไร', 'ถามอะไรได้', 'what can you', 'help'])) {
+            return 'สอบถามได้ทุกเรื่องเกี่ยวกับคุณกอล์ฟค่ะ ทั้งทักษะ ผลงาน ประสบการณ์ การศึกษา เป้าหมาย และช่องทางติดต่อค่ะ';
+        }
+        return null;
+    }
+
+    // 2) Concise overview answers (composed, to the point)
+    function answerOverview(qRaw) {
+        const q = normalizeText(qRaw);
+        if (hasAny(q, ['ทักษะ', 'สกิล', 'skill', 'เก่งอะไร', 'ถนัด', 'ความสามารถ', 'tech stack', 'เทคโนโลยี', 'ภาษาโปรแกรม'])) {
+            return 'คุณกอล์ฟถนัดด้าน Applied AI/LLM (RAG, Agentic AI, Prompt & Context Engineering), Automation & BI (n8n, Power BI/Apps) และการเขียนโปรแกรม (Python, TypeScript, FastAPI, Next.js) ค่ะ สนใจด้านไหนเป็นพิเศษถามเพิ่มได้ค่ะ';
+        }
+        if (hasAny(q, ['โปรเจกต์', 'โปรเจค', 'ผลงาน', 'project', 'เคยทำอะไร', 'ทำงานอะไรมา'])) {
+            return 'ผลงานเด่นมี 3 ชิ้นค่ะ — RFQ Wizard (แพลตฟอร์มประเมินราคาด้วย AI), Enterprise RAG Chatbot (ผู้ช่วยค้นเอกสารองค์กร) และ Sales Dashboard (ระบบรายงานและพยากรณ์ยอดขาย) อยากทราบรายละเอียดชิ้นไหนแจ้งได้ค่ะ';
+        }
+        if (hasAny(q, ['ประสบการณ์', 'ทำงานที่ไหน', 'experience', 'เคยทำงาน', 'บริษัท', 'งานที่ผ่านมา', 'ตำแหน่ง'])) {
+            return 'ประสบการณ์ของคุณกอล์ฟค่ะ — AI Context Engineer ที่ Sirivatana Interprint (2026), IT Infrastructure Section Head ที่ C.J. Express (2021–2026) และ IT Officer ที่ Lazada (2020–2021) ค่ะ';
+        }
+        if (hasAny(q, ['เรียน', 'การศึกษา', 'จบ', 'มหาลัย', 'มหาวิทยาลัย', 'education', 'ปริญญา', 'วุฒิ'])) {
+            const secs = sectionsMatching('education');
+            if (secs.length) return `${secs[0].body.trim()} ค่ะ`;
+        }
+        if (hasAny(q, ['ทำไมต้องจ้าง', 'ทำไมควรจ้าง', 'จุดเด่น', 'why hire', 'จ้างทำไม', 'ดียังไง', 'จุดแข็ง'])) {
+            const secs = sectionsMatching('why hire', 'why');
+            if (secs.length) return `${secs[0].body.trim()} ค่ะ`;
+        }
+        return null;
+    }
+
+    // 3) Relevance-scored retrieval over the whole knowledge base
+    function answerFromKnowledge(qRaw) {
+        const qTokens = tokenize(qRaw);
+        if (!qTokens.length || aiState.sections.length === 0) return null;
         let best = null;
         let bestScore = 0;
 
         aiState.sections.forEach(section => {
-            const hay = normalizeText(`${section.title} ${section.body}`);
+            const title = normalizeText(section.title);
+            const text = normalizeText(`${section.title} ${section.body}`);
             let score = 0;
-            tokens.forEach(token => {
-                if (!token) return;
-                if (hay.includes(token)) score += 1;
+            qTokens.forEach(tok => {
+                if (text.includes(tok)) {
+                    score += title.includes(tok) ? 3 : 1;   // title matches weigh more
+                    if (tok.length >= 4) score += 1;         // longer tokens are more specific
+                }
             });
             if (score > bestScore) {
                 bestScore = score;
@@ -496,10 +647,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        if (best && bestScore > 0) {
-            return `เรื่องนี้ของบอส: ${best.body.trim()}`;
-        }
+        if (best && bestScore >= 2) return `${best.body.trim()} ค่ะ`;
         return null;
+    }
+
+    // Pipeline: meta -> structured profile -> overview -> retrieval -> graceful fallback
+    function generateAnswer(question) {
+        return answerSmallTalk(question)
+            || answerOverview(question)
+            || answerFromProfile(question)
+            || answerFromKnowledge(question)
+            || pick([
+                'ขออภัยค่ะ ดิฉันยังไม่มีข้อมูลส่วนนี้ ลองถามเรื่องทักษะ ผลงาน ประสบการณ์ หรือการติดต่อคุณกอล์ฟได้ค่ะ',
+                'เรื่องนี้ดิฉันยังไม่แน่ใจค่ะ ลองถามใหม่ เช่น "มีทักษะอะไร" หรือ "ติดต่อยังไง" ได้นะคะ'
+            ]);
     }
 
     async function loadKnowledge() {
@@ -526,7 +687,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     .filter(Boolean);
             }
         } catch (err) {
-            appendMessage(withPathaPrefix('ขอโทษค่ะ ระบบความรู้ยังไม่พร้อมใช้งาน'), 'bot');
+            appendMessage(withBabataPrefix('ขอโทษค่ะ ระบบความรู้ยังไม่พร้อมใช้งาน'), 'bot');
         }
     }
 
@@ -536,19 +697,16 @@ document.addEventListener('DOMContentLoaded', function () {
         appendMessage(clean, 'user');
         const typingBubble = appendTypingIndicator();
         setHudStatus('RESPONDING');
-        const fromProfile = answerFromProfile(clean);
-        const fromKnowledge = fromProfile ? null : answerFromKnowledge(clean);
-        const answer = fromProfile
-            ? withPathaPrefix(fromProfile)
-            : fromKnowledge
-                ? withPathaPrefix(fromKnowledge)
-                : withPathaPrefix('ขอโทษค่ะ ยังไม่เจอคำตอบ ลองถามเรื่องประวัติ เป้าหมาย งานอดิเรก หรือช่องทางติดต่อได้นะคะ');
+
+        const answer = withBabataPrefix(generateAnswer(clean));
+        // Natural, length-aware "thinking" delay (0.7s–2.2s)
+        const delay = Math.min(2200, 700 + answer.length * 9);
 
         setTimeout(() => {
             if (typingBubble) typingBubble.remove();
             appendMessage(answer, 'bot');
             setHudStatus('READY');
-        }, 1500);
+        }, delay);
     }
 
     if (aiQuestionSend && aiQuestionInput) {

@@ -31,8 +31,8 @@ body::before {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(38, 78, 112, 0.15), transparent 80%);
     z-index: -1;
     pointer-events: none;
@@ -1597,102 +1597,18 @@ h6 {
     }
 }
 
-/* Time-Warp Intro */
-.time-warp {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.12), rgba(3, 7, 18, 0.98) 60%);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-}
-
-.time-warp.time-warp--show {
-    opacity: 1;
-}
-
-.time-warp.time-warp--hide {
-    opacity: 0;
-}
-
-.time-warp-core {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.8), transparent 65%);
-    filter: blur(2px);
-    animation: warp-pulse 2.5s ease-in-out infinite;
-}
-
-.time-warp-ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(34, 211, 238, 0.4);
-    box-shadow: 0 0 25px rgba(34, 211, 238, 0.2);
-    animation: warp-spin 3.5s linear infinite;
-}
-
-.time-warp-ring.ring-1 {
-    width: 220px;
-    height: 220px;
-}
-
-.time-warp-ring.ring-2 {
-    width: 320px;
-    height: 320px;
-    animation-duration: 5s;
-    border-color: rgba(192, 132, 252, 0.35);
-}
-
-.time-warp-ring.ring-3 {
-    width: 420px;
-    height: 420px;
-    animation-duration: 6.5s;
-    border-color: rgba(244, 114, 182, 0.25);
-}
-
-@keyframes warp-pulse {
-    0%,
-    100% {
-        transform: scale(0.85);
-        opacity: 0.7;
-    }
-
-    50% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes warp-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-
-
 /* ============================================ */
-/* ===== VERSE GATE — Stellar Title ===== */
+/* ===== VERSE GATE — Minimalist Editorial Intro ===== */
 /* ============================================ */
 .verse-gate {
     position: fixed;
     inset: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     height: 100dvh; /* dynamic viewport for mobile browsers */
     z-index: 9998;
-    background: radial-gradient(ellipse at center, #0a1a2e 0%, #020817 50%, #000005 100%);
+    background-color: var(--verse-bg);
     overflow: hidden;
-    isolation: isolate;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1700,110 +1616,131 @@ h6 {
     font-family: 'Sora', sans-serif;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.gate-door {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50%;
-    background: linear-gradient(180deg, #020617, #0a0f1f, #020617);
-    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8);
-    transition: transform 1.4s cubic-bezier(0.65, 0, 0.35, 1);
-    z-index: 50;
-    pointer-events: none;
-    transform: translateX(-100%);
-}
-.gate-right { transform: translateX(100%); }
-
-/* Starfield */
-.vg-stars {
+/* Living gradient — large soft color blobs that slowly drift, giving the void gentle movement */
+.vg-blobs {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-image:
-        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.85), transparent 60%),
-        radial-gradient(1px 1px at 28% 72%, rgba(255,255,255,0.7), transparent 60%),
-        radial-gradient(1.5px 1.5px at 45% 22%, rgba(186,230,253,0.9), transparent 60%),
-        radial-gradient(1px 1px at 62% 84%, rgba(255,255,255,0.6), transparent 60%),
-        radial-gradient(1px 1px at 78% 14%, rgba(192,132,252,0.7), transparent 60%),
-        radial-gradient(1.5px 1.5px at 88% 58%, rgba(34,211,238,0.85), transparent 60%),
-        radial-gradient(1px 1px at 8% 88%, rgba(255,255,255,0.5), transparent 60%),
-        radial-gradient(1px 1px at 95% 92%, rgba(255,255,255,0.7), transparent 60%),
-        radial-gradient(1px 1px at 35% 5%, rgba(244,114,182,0.6), transparent 60%),
-        radial-gradient(1px 1px at 55% 50%, rgba(255,255,255,0.4), transparent 60%),
-        radial-gradient(1px 1px at 18% 45%, rgba(186,230,253,0.6), transparent 60%),
-        radial-gradient(1px 1px at 70% 35%, rgba(255,255,255,0.7), transparent 60%),
-        radial-gradient(1px 1px at 5% 30%, rgba(255,255,255,0.6), transparent 60%),
-        radial-gradient(1px 1px at 92% 25%, rgba(255,255,255,0.5), transparent 60%),
-        radial-gradient(1px 1px at 38% 90%, rgba(186,230,253,0.5), transparent 60%);
-    animation: vg-twinkle 6s ease-in-out infinite;
+    overflow: hidden;
 }
-@keyframes vg-twinkle { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+.vg-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    will-change: transform;
+}
+.vg-blob-a {
+    width: 46vmax;
+    height: 46vmax;
+    top: -14%;
+    left: -10%;
+    background: radial-gradient(circle at center, rgba(96, 41, 189, 0.30), transparent 62%);
+    animation: vg-blob-a 28s ease-in-out infinite;
+}
+.vg-blob-b {
+    width: 40vmax;
+    height: 40vmax;
+    top: -8%;
+    right: -12%;
+    background: radial-gradient(circle at center, rgba(6, 182, 212, 0.28), transparent 62%);
+    animation: vg-blob-b 32s ease-in-out infinite;
+}
+.vg-blob-c {
+    width: 38vmax;
+    height: 38vmax;
+    bottom: -18%;
+    left: 30%;
+    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.20), transparent 64%);
+    animation: vg-blob-c 36s ease-in-out infinite;
+}
+@keyframes vg-blob-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(16vw, 10vh) scale(1.12); }
+    66%      { transform: translate(6vw, 20vh) scale(0.95); }
+}
+@keyframes vg-blob-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(-14vw, 14vh) scale(1.1); }
+    66%      { transform: translate(-4vw, 4vh) scale(0.92); }
+}
+@keyframes vg-blob-c {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(-12vw, -16vh) scale(1.14); }
+}
 
-/* Aurora glow background */
-.vg-aurora {
+/* Occasional diagonal light sweep — a subtle, premium moment of motion */
+.vg-beam {
+    position: absolute;
+    inset: -30%;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg,
+        transparent 44%,
+        rgba(186, 230, 253, 0.05) 49%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(186, 230, 253, 0.05) 51%,
+        transparent 56%);
+    background-size: 300% 300%;
+    background-position: 120% 0%;
+    animation: vg-beam-sweep 11s ease-in-out 2s infinite;
+}
+@keyframes vg-beam-sweep {
+    0%   { background-position: 120% 0%; }
+    45%  { background-position: -40% 0%; }
+    100% { background-position: -40% 0%; }
+}
+
+/* Drifting starfield (canvas) — slow parallax movement, like gliding through space */
+.vg-starfield {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    animation: vg-fade-in 2s ease-out 0.2s forwards;
+}
+
+/* Fine dot-grid — adds engineered texture toward the edges, fades out near the text so it never fights with it */
+.vg-grid {
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background:
-        radial-gradient(ellipse 60% 40% at 50% 50%, rgba(34, 211, 238, 0.18), transparent 70%),
-        radial-gradient(ellipse 40% 25% at 30% 80%, rgba(192, 132, 252, 0.12), transparent 70%),
-        radial-gradient(ellipse 40% 25% at 70% 20%, rgba(34, 211, 238, 0.1), transparent 70%);
+    background-image: radial-gradient(circle, rgba(226, 232, 240, 0.16) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask-image: radial-gradient(circle at 50% 44%, transparent 0%, transparent 20%, black 62%);
+    mask-image: radial-gradient(circle at 50% 44%, transparent 0%, transparent 20%, black 62%);
+    animation: vg-grid-breathe 10s ease-in-out infinite;
+}
+@keyframes vg-grid-breathe {
+    0%, 100% { opacity: 0.4; }
+    50%      { opacity: 0.65; }
 }
 
-.vg-vignette {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.7) 100%);
-}
-
-/* Subtle ambient rings */
-.vg-ring {
+/* Soft spotlight directly behind the content — gives the type something to sit on */
+.vg-spotlight {
     position: absolute;
     top: 50%;
     left: 50%;
-    border-radius: 50%;
-    border: 1px solid rgba(34, 211, 238, 0.12);
+    width: min(680px, 72vw);
+    height: min(440px, 48vh);
+    transform: translate(-50%, -55%);
+    background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.12), rgba(168, 85, 247, 0.07) 45%, transparent 75%);
+    filter: blur(50px);
     pointer-events: none;
-    z-index: 2;
-    aspect-ratio: 1;
+    z-index: 0;
+    animation: vg-spotlight-breathe 9s ease-in-out infinite;
 }
-.vg-ring-1 {
-    width: min(900px, 75vmin);
-    margin-top: calc(min(900px, 75vmin) / -2);
-    margin-left: calc(min(900px, 75vmin) / -2);
-    border-style: dashed;
-    border-color: rgba(34, 211, 238, 0.13);
-    animation: vg-spin 80s linear infinite;
+@keyframes vg-spotlight-breathe {
+    0%, 100% { opacity: 0.75; }
+    50%      { opacity: 1; }
 }
-.vg-ring-2 {
-    width: min(620px, 50vmin);
-    margin-top: calc(min(620px, 50vmin) / -2);
-    margin-left: calc(min(620px, 50vmin) / -2);
-    border-color: rgba(192, 132, 252, 0.16);
-    animation: vg-spin 50s linear infinite reverse;
-}
-.vg-ring-1::before,
-.vg-ring-2::before {
-    content: '';
-    position: absolute;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--verse-accent-cyan);
-    box-shadow: 0 0 14px rgba(34, 211, 238, 1);
-    top: -4px; left: 50%;
-    transform: translateX(-50%);
-}
-.vg-ring-2::before {
-    background: var(--verse-accent-purple);
-    box-shadow: 0 0 14px rgba(192, 132, 252, 1);
-}
-@keyframes vg-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 /* Center clickable stage */
 .vg-stage {
@@ -1816,159 +1753,240 @@ h6 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0;
     color: inherit;
     font-family: inherit;
-    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
     max-width: 100vw;
     box-sizing: border-box;
 }
-.vg-stage:hover { transform: scale(1.02); }
 
-/* Aura behind title */
-.vg-aura {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: min(820px, 88vw);
-    height: min(360px, 50vh);
-    transform: translate(-50%, -65%);
-    background: radial-gradient(ellipse at center,
-        rgba(34, 211, 238, 0.32) 0%,
-        rgba(192, 132, 252, 0.18) 30%,
-        transparent 70%);
-    filter: blur(40px);
-    pointer-events: none;
-    z-index: -1;
-    animation: vg-aura-pulse 5s ease-in-out infinite;
-}
-@keyframes vg-aura-pulse {
-    0%, 100% { opacity: 0.7; transform: translate(-50%, -65%) scale(1); }
-    50%      { opacity: 1;   transform: translate(-50%, -65%) scale(1.08); }
-}
-
-/* Title — fluid sizing using vmin so it scales by SHORTER axis (won't overflow on narrow viewports) */
-.vg-title {
-    font-size: clamp(1.6rem, 8.5vmin, 5.5rem);
-    font-weight: 800;
-    letter-spacing: clamp(2px, 1.1vmin, 12px);
-    color: #fff;
-    margin: 0 0 clamp(20px, 4vh, 40px);
-    line-height: 1;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    max-width: 92vw;
-    text-shadow:
-        0 0 28px rgba(34, 211, 238, 0.55),
-        0 0 60px rgba(192, 132, 252, 0.35),
-        0 0 100px rgba(34, 211, 238, 0.2);
-}
-
-.vg-letter {
-    display: inline-block;
+/* Name — quiet confidence: one clean entrance, then a slow, refined light sheen (no glow, no filter tricks) */
+.vg-name {
+    font-size: clamp(1.9rem, 5.4vmin, 3.6rem);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 0;
+    line-height: 1.15;
+    color: #f1f5f9; /* fallback for browsers without background-clip:text */
+    background: linear-gradient(100deg, #f1f5f9 0%, #f1f5f9 42%, #bae6fd 50%, #f1f5f9 58%, #f1f5f9 100%);
+    background-size: 260% auto;
+    background-position: 200% center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     opacity: 0;
-    transform: translateY(40px);
-    animation: vg-letter-in 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
-}
-.vg-letter-space { display: inline-block; width: 0.4em; }
-.vg-letter:nth-child(1)  { animation-delay: 0.20s; }
-.vg-letter:nth-child(2)  { animation-delay: 0.27s; }
-.vg-letter:nth-child(3)  { animation-delay: 0.34s; }
-.vg-letter:nth-child(4)  { animation-delay: 0.41s; }
-.vg-letter:nth-child(5)  { animation-delay: 0.48s; }
-.vg-letter:nth-child(6)  { animation-delay: 0.55s; }
-.vg-letter:nth-child(7)  { animation-delay: 0.62s; }
-.vg-letter:nth-child(8)  { animation-delay: 0.69s; }
-.vg-letter:nth-child(10) { animation-delay: 0.80s; }
-.vg-letter:nth-child(11) { animation-delay: 0.87s; }
-@keyframes vg-letter-in {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Line + ENTER */
-.vg-line {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-bottom: 22px;
-    opacity: 0;
-    animation: vg-fade-in 0.8s ease-out 1.1s forwards;
-}
-.vg-line-bar {
-    display: block;
-    width: clamp(40px, 10vw, 110px);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.85));
-    box-shadow: 0 0 8px rgba(34, 211, 238, 0.4);
-}
-.vg-line-bar:last-child {
-    background: linear-gradient(90deg, rgba(34, 211, 238, 0.85), transparent);
-}
-.vg-enter-text {
-    font-family: 'Courier New', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 6px;
-    color: rgba(186, 230, 253, 0.95);
-    text-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
-    font-weight: 700;
-}
-
-.vg-arrow {
-    color: rgba(34, 211, 238, 0.85);
-    font-size: 0.95rem;
-    text-shadow: 0 0 10px rgba(34, 211, 238, 0.7);
-    opacity: 0;
+    transform: translateY(14px);
     animation:
-        vg-fade-in 0.8s ease-out 1.4s forwards,
-        vg-arrow-bounce 2s ease-in-out 2.4s infinite;
+        vg-rise-in 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards,
+        vg-name-sheen 6s ease-in-out 1.4s infinite;
 }
+@keyframes vg-name-sheen {
+    0%, 15%  { background-position: 200% center; }
+    50%      { background-position: 0% center; }
+    85%, 100% { background-position: -200% center; }
+}
+
+/* Thin rule that draws itself in, then carries a slow traveling highlight */
+.vg-rule {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 1px;
+    margin: clamp(16px, 2.6vh, 22px) 0;
+    overflow: hidden;
+    background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.55), transparent);
+    animation: vg-rule-draw 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.55s forwards;
+}
+.vg-rule::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    animation: vg-rule-shimmer 3.4s ease-in-out 1.8s infinite;
+}
+@keyframes vg-rule-draw { to { width: clamp(56px, 8vw, 96px); } }
+@keyframes vg-rule-shimmer {
+    0%   { left: -50%; }
+    100% { left: 150%; }
+}
+
+/* Role — small, quiet, letter-spaced label */
+.vg-role {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.85);
+    margin: 0 0 clamp(30px, 5.5vh, 52px);
+    opacity: 0;
+    animation: vg-fade-in 0.8s ease-out 0.75s forwards;
+}
+
+/* Enter cue — understated text link, not a glowing CTA */
+.vg-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba(226, 232, 240, 0.75);
+    opacity: 0;
+    animation: vg-fade-in 0.8s ease-out 1.05s forwards;
+    transition: color 0.25s ease;
+}
+.vg-enter-label { min-width: 4.8em; text-align: left; }
+.vg-enter-arrow {
+    font-size: 0.75rem;
+    color: rgba(125, 211, 252, 0.9);
+    animation: vg-arrow-nudge 2.2s ease-in-out 1.9s infinite;
+}
+.vg-stage:hover .vg-enter { color: #f8fafc; }
+.vg-stage:hover .vg-enter-arrow { animation-duration: 0.7s; }
+@keyframes vg-arrow-nudge {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(3px); }
+}
+
+/* Loading progress — the paced beat between "Enter" and the reveal, not an abrupt cut */
+.vg-progress {
+    display: block;
+    width: clamp(84px, 13vw, 120px);
+    height: 2px;
+    margin-top: 16px;
+    border-radius: 2px;
+    background: rgba(148, 163, 184, 0.18);
+    overflow: hidden;
+    opacity: 0;
+    transform: scaleX(0.85);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.vg-progress-fill {
+    display: block;
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #7dd3fc, #c084fc);
+}
+.vg-stage.is-loading { pointer-events: none; }
+.vg-stage.is-loading .vg-enter-arrow { opacity: 0.4; animation: none; }
+.vg-stage.is-loading .vg-progress {
+    opacity: 1;
+    transform: scaleX(1);
+}
+.vg-stage.is-loading .vg-progress-fill {
+    animation: vg-progress-fill 0.85s cubic-bezier(0.3, 0.1, 0.2, 1) forwards;
+}
+@keyframes vg-progress-fill { to { width: 100%; } }
+
 @keyframes vg-fade-in { to { opacity: 1; } }
-@keyframes vg-arrow-bounce {
-    0%, 100% { transform: translateY(0); opacity: 0.7; }
-    50%      { transform: translateY(6px); opacity: 1; }
+@keyframes vg-rise-in { to { opacity: 1; transform: none; } }
+
+/* Respect reduced-motion: keep it elegant but still */
+@media (prefers-reduced-motion: reduce) {
+    .vg-name { animation: vg-rise-in 0.01s linear forwards; background-position: 0% center; }
+    .vg-rule { animation: none; width: 72px; }
+    .vg-rule::after { animation: none; display: none; }
+    .vg-role,
+    .vg-enter { animation: none; opacity: 1; }
+    .vg-enter-arrow { animation: none; }
+    .vg-aurora { animation: none; }
+    .vg-spotlight { animation: none; opacity: 0.85; }
+    .vg-grid { animation: none; opacity: 0.5; }
+    .vg-blob { animation: none; }
+    .vg-beam { display: none; }
+    .vg-starfield { animation: none; opacity: 1; }
+    .vg-progress-fill { animation-duration: 0.01s; }
+    body.entering-site main,
+    body.entering-site #header { animation: none !important; }
 }
 
-.vg-stage:hover .vg-aura {
-    animation-duration: 2.5s;
+/* Open animation — a clean, understated crossfade (no portal theatrics) */
+.verse-gate.gate-open {
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
-.vg-stage:hover .vg-title {
-    text-shadow:
-        0 0 36px rgba(34, 211, 238, 0.75),
-        0 0 80px rgba(192, 132, 252, 0.5),
-        0 0 130px rgba(34, 211, 238, 0.3);
-}
-
-/* Open animation */
-.verse-gate.gate-open { transition: opacity 1s ease 0.3s; }
-.verse-gate.gate-open .gate-left  { transform: translateX(-100%); }
-.verse-gate.gate-open .gate-right { transform: translateX(100%); }
 .verse-gate.gate-open .vg-stage {
-    transform: scale(1.4);
     opacity: 0;
-    transition: transform 1s cubic-bezier(0.6, 0, 0.4, 1), opacity 0.7s ease 0.2s;
-}
-.verse-gate.gate-open .vg-stars,
-.verse-gate.gate-open .vg-aurora,
-.verse-gate.gate-open .vg-ring {
-    opacity: 0;
-    transition: opacity 0.6s ease;
+    transform: translateY(-8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-@media (max-width: 767px) {
-    .vg-title {
-        font-size: clamp(1.4rem, 9vw, 3rem);
-        letter-spacing: clamp(2px, 0.6vw, 6px);
-        margin-bottom: 22px;
-    }
-    .vg-line-bar { width: 30px; }
-    .vg-enter-text { font-size: 0.6rem; letter-spacing: 4px; }
-    .vg-line { gap: 12px; }
+/* Main page reveals in with a soft fade instead of snapping in */
+body.entering-site main {
+    animation: site-reveal 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both;
+}
+body.entering-site #header {
+    animation: site-header-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+}
+@keyframes site-reveal {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+@keyframes site-header-in {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: none; }
 }
 
-@media (max-aspect-ratio: 1/1) {
-    /* Portrait — title can scale with width comfortably */
-    .vg-title { font-size: clamp(1.6rem, 9vw, 5rem); }
+/* ===== Education — date badges, school logo chips + linked names ===== */
+.edu-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Sora', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #7dd3fc;
+    padding: 5px 14px;
+    border: 1px solid rgba(125, 211, 252, 0.28);
+    border-radius: 999px;
+    background: rgba(125, 211, 252, 0.07);
+}
+.edu-date i { font-size: 0.85em; opacity: 0.9; }
+.edu-date--pink {
+    color: #f9a8d4;
+    border-color: rgba(249, 168, 212, 0.28);
+    background: rgba(249, 168, 212, 0.07);
+}
+
+/* The white rounded chip is baked into the image (retina 2x), so no CSS background needed. */
+.edu-logo-chip {
+    display: inline-block;
+    margin: 2px 0 14px;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.edu-logo-chip:hover { transform: translateY(-2px); }
+.edu-logo {
+    height: 54px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35));
+    transition: filter 0.3s ease;
+}
+.edu-logo-chip:hover .edu-logo {
+    filter: drop-shadow(0 8px 20px rgba(34, 211, 238, 0.35));
+}
+.edu-school-link {
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+.edu-school-link:hover { color: #7dd3fc; }
+.edu-link-icon {
+    display: inline-block;
+    margin-left: 7px;
+    font-size: 0.7em;
+    vertical-align: middle;
+    opacity: 0.55;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.edu-school-link:hover .edu-link-icon {
+    opacity: 1;
+    transform: translate(1px, -1px);
 }
 
 /* AI Signal HUD */
@@ -3341,4 +3359,59 @@ h6 {
     .profile-ring-mid   { width: 235px; height: 235px; margin: -117px 0 0 -117px; }
     .profile-conic-halo { width: 215px; height: 215px; margin: -107px 0 0 -107px; }
     .hero-scroll-cue { display: none; }
+}
+
+/* ============================================ */
+/* ===== Responsive Hardening (cross-device) ===== */
+/* ============================================ */
+
+/* Never allow horizontal scroll from any stray wide element */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* All media stays fluid inside its container */
+img, svg, video { max-width: 100%; height: auto; }
+img { display: block; }
+/* keep object-fit portraits/logos behaving (they set their own height) */
+.profile-img-wrap img, .edu-logo, .ai-avatar-img, .ai-figure-img { height: auto; }
+
+/* Long words / URLs (e.g. GitHub link in chat) wrap instead of overflowing */
+.ai-bubble { overflow-wrap: anywhere; word-break: break-word; }
+
+/* Tablet & below */
+@media (max-width: 1024px) {
+    .verse-ai-figure { right: 24px; max-width: 42vw; }
+}
+
+/* Phones */
+@media (max-width: 767px) {
+    /* Reset the desktop negative margin that could clip the chat panel */
+    .ai-chat-panel { margin-left: 0 !important; }
+    /* AI avatar must never exceed the column */
+    .ai-avatar-img { width: 100%; max-width: 300px; margin-inline: auto; }
+    /* Decorative projects figure off on small screens (was position-offset) */
+    .verse-ai-figure { display: none; }
+    /* Certificate cards fit the viewport (swiper still scrolls horizontally) */
+    .swiper-slide { width: min(320px, 84vw); height: auto; aspect-ratio: 340 / 480; }
+    .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+    /* Keep the floating AI HUD from crowding narrow screens */
+    .ai-hud { max-width: 60vw; }
+}
+
+/* Small phones (<=400px) — tighten hero + intro type */
+@media (max-width: 400px) {
+    .nav-dock { width: 94%; }
+    #home h1 { font-size: 2.5rem; line-height: 1.1; }
+    .vg-name { font-size: clamp(1.6rem, 8vw, 2.4rem); }
+    .ai-hud { transform: scale(0.82); transform-origin: bottom right; }
+}
+
+/* Landscape phones / short viewports — hide tall side rails */
+@media (max-height: 500px) and (orientation: landscape) {
+    .scroll-indicator { display: none; }
+    .hero-scroll-cue { display: none; }
+}
+
+/* Ultra-wide desktops — cap content, keep it centered */
+@media (min-width: 1600px) {
+    main.container, .container { max-width: 1400px; }
 }
